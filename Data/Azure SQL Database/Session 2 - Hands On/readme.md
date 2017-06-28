@@ -86,9 +86,7 @@ The first step in working with Azure SQL Database is to create a database accoun
 
     _Opening the resource group_
 
-1. Wait until "Deploying" changes to "Succeeded," indicating that the SQL Database has been deployed.
-
-	> Refresh the page in the browser every now and then to update the deployment status. Clicking the **Refresh** button in the resource-group blade refreshes the list of resources in the resource group, but does not reliably update the deployment status.
+1. Wait until "Deploying" changes to "Succeeded," indicating that the SQL Database has been deployed. You can click the **Refresh** button at the top of the blade to refresh the deployment status.
 
     ![Monitoring the deployment status](Images/deployment-status.png)
 

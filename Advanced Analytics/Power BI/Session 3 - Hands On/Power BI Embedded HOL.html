@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Power BI Embedded HOL</title>
+<title>readme</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
@@ -542,10 +542,7 @@ vertical-align:1px;
 <p><em>Opening the resource group</em></p>
 </li>
 <li>
-<p>Wait until "Deploying" changes to "Succeeded," indicating that the workspace collection has been deployed. Then click the workspace collection.</p>
-<blockquote>
-<p>Refresh the page in the browser from time to time to update the deployment status. Clicking the <strong>Refresh</strong> button in the resource-group blade refreshes the list of resources in the resource group, but does not reliably update the deployment status.</p>
-</blockquote>
+<p>Wait until "Deploying" changes to "Succeeded," indicating that the workspace collection has been deployed. (You can click the <strong>Refresh</strong> button at the top of the blade to refresh the deployment status.) Then click the workspace collection.</p>
 <p><a href="Images/portal-powerbiresources.png" target="_blank"><img src="Images/portal-powerbiresources.png" alt="Opening the workspace collection" style="max-width:100%;"></a></p>
 <p><em>Opening the workspace collection</em></p>
 </li>
@@ -2097,7 +2094,7 @@ ViewBag.Title = "Reports";
 
 &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>container<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>reportContainer<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
 
-<span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;<span class="pl-s1"></span>
 <span class="pl-s1"></span>
 <span class="pl-s1">    <span class="pl-k">var</span> embedConfiguration <span class="pl-k">=</span> {</span>
 <span class="pl-s1">        type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>report<span class="pl-pds">'</span></span>,</span>
@@ -2109,7 +2106,7 @@ ViewBag.Title = "Reports";
 <span class="pl-s1">    <span class="pl-k">var</span> $reportContainer <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#reportContainer<span class="pl-pds">'</span></span>);</span>
 <span class="pl-s1">    <span class="pl-k">var</span> report <span class="pl-k">=</span> <span class="pl-smi">powerbi</span>.<span class="pl-en">embed</span>(<span class="pl-smi">$reportContainer</span>.<span class="pl-c1">get</span>(<span class="pl-c1">0</span>), embedConfiguration);</span>
 <span class="pl-s1"></span>
-<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1"></span><span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
 </pre></div>
 </li>
 <li>
@@ -2122,10 +2119,10 @@ ViewBag.Title = "Reports";
     &lt;<span class="pl-ent">title</span>&gt;@ViewBag.Title&lt;/<span class="pl-ent">title</span>&gt;
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>~/Scripts/jquery-1.10.2.js<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">language</span>=<span class="pl-s"><span class="pl-pds">"</span>javascript<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>~/Scripts/powerbi.js<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">language</span>=<span class="pl-s"><span class="pl-pds">"</span>javascript<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>~/Scripts/jquery-1.10.2.js<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">language</span>=<span class="pl-s"><span class="pl-pds">"</span>javascript<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>~/Scripts/powerbi.js<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">language</span>=<span class="pl-s"><span class="pl-pds">"</span>javascript<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
 
-<span class="pl-s1">    &lt;<span class="pl-ent">style</span>&gt;</span>
+    &lt;<span class="pl-ent">style</span>&gt;<span class="pl-s1"></span>
 <span class="pl-s1">        <span class="pl-ent">html</span>, <span class="pl-ent">body</span> {</span>
 <span class="pl-s1">            <span class="pl-c1"><span class="pl-c1">height</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;</span>
 <span class="pl-s1">            <span class="pl-c1"><span class="pl-c1">width</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;</span>
@@ -2139,7 +2136,7 @@ ViewBag.Title = "Reports";
 <span class="pl-s1">            <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0<span class="pl-k">px</span></span>;</span>
 <span class="pl-s1">            <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0<span class="pl-k">px</span></span>;</span>
 <span class="pl-s1">        }</span>
-<span class="pl-s1">    &lt;/<span class="pl-ent">style</span>&gt;</span>
+<span class="pl-s1">    </span><span class="pl-s1">&lt;</span>/<span class="pl-ent">style</span>&gt;
 
 &lt;/<span class="pl-ent">head</span>&gt;
 &lt;<span class="pl-ent">body</span>&gt;

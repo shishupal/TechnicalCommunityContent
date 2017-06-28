@@ -154,9 +154,7 @@ Let's get started!
 
 	_Opening the resource group_
 
-1. Wait until "Deploying" changes to "Succeeded," indicating that the cluster has been successfully deployed. It generally takes about five minutes for the deployment to complete for a cluster with a single worker node, and more for clusters containing more nodes.
-
-	> Click the browser's **Refresh** button occasionally to update the deployment status. Clicking the **Refresh** button in the resource-group blade refreshes the list of resources in the resource group, but does not reliably update the deployment status.
+1. Wait until "Deploying" changes to "Succeeded," indicating that the cluster has been successfully deployed. (You can click the **Refresh** button at the top of the blade to refresh the deployment status.) It generally takes about five minutes for the deployment to complete for a cluster with a single worker node, and more for clusters containing more nodes.
 
     ![Successful deployment](Images/deployment-succeeded.png)
 
@@ -195,7 +193,7 @@ In this exercise, you will upload the Python scripts that you modified in Exerci
     <pre>
     ssh azureuser@<i>masterDNS</i></pre>
 
-1. To be certain that the script files you uploaded to the cluster contain Linux-style line endings ("/r" rather than "/r/n"), execute the following command in the terminal window to install and run the dos2unix conversion program:
+1. To be certain that the script files you uploaded to the cluster contain Linux-style line endings ("/r" rather than "/r/n"), execute the following commands in the terminal window to install and run the dos2unix conversion program:
 
     ```
     sudo apt-get install dos2unix
@@ -244,7 +242,7 @@ In this exercise, you will upload the Python scripts that you modified in Exerci
 
 1. A PuTTY terminal window will appear and you will be prompted to **login as**. Log in with the user name ("azureuser") and password ("Azure4Research!") you entered into the deployment template in [Exercise 2](#Exercise2).
 
-1. To be certain that the script files you uploaded to the cluster contain Linux-style line endings ("/r" rather than "/r/n"), execute the following command in the PuTTY terminal window to install and run the dos2unix conversion program:
+1. To be certain that the script files you uploaded to the cluster contain Linux-style line endings ("/r" rather than "/r/n"), execute the following commands in the PuTTY terminal window to install and run the dos2unix conversion program:
 
     ```
     sudo apt-get install dos2unix
