@@ -20,10 +20,16 @@ You will also find below, links to presenter training videos, providing examples
 ## Presenter Training Videos ##
 
 Session 1
+
+Demo 1 Demo 2 Demo 3
 																		
 Session 2
 
+Demo 1 Demo 2 Demo 3 Demo 4 Demo 5 Demo 6
+
 Session 3
+
+Demo 1 Demo 2 Demo 3 Demo 4 Demo 5 Demo 6
 
 
 
