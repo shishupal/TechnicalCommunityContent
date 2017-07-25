@@ -469,21 +469,22 @@ vertical-align:1px;
 </head>
 <body>
 <p><a name="HOLTitle"></a></p>
-<h1>Using Azure DocumentDB</h1>
+<h1>Using Azure Cosmos DB and the DocumentDB API</h1>
 <hr>
 <p><a name="Overview"></a></p>
 <h2>Overview</h2>
-<p>Whether it targets businesses, consumers, or both, an app is only as meaningful as the data that drives it. With consumer and organizational requirements changing constantly, as well as the need to store, index, and optimize data and structures as they change, the need for a more open, flexible, and schema-agnostic data solution has been become essential. Azure DocumentDB addresses these challenges and makes it easy to adjust and adapt data models on the fly, as business logic and application scenarios change.</p>
-<p><a href="https://azure.microsoft.com/en-us/services/documentdb/">DocumentDB</a> is a fully managed NoSQL database service built for fast performance, high availability, elastic scaling, and ease of development. As a schema-free NoSQL database, DocumentDB provides rich and familiar SQL query capabilities over JSON data, ensuring that 99% of your reads are served under 10 milliseconds and 99% of your writes are served under 15 milliseconds. These unique benefits make DocumentDB a great fit for Web, mobile, gaming, IoT, and many other applications that need seamless scale and global replication.</p>
-<p>In this lab, you will deploy an Azure DocumentDB database to store customer and product order information for the fictitious company <em>Adventure Works</em>, and you will connect it to Azure Search to index the data and implement auto-suggest. You will also write a Web app that uses the database and demonstrates how easily applications can consume data from DocumentDB.</p>
+<p>Whether it targets businesses, consumers, or both, an app is only as meaningful as the data that drives it. With consumer and organizational requirements changing constantly, as well as the need to store, index, and optimize data and structures as they change, the need for a more open, flexible, and schema-agnostic data solution has been become essential. Azure Cosmos DB addresses this need and more and makes it easy to adjust and adapt data models on the fly, as business logic and application scenarios change.</p>
+<p><a href="https://azure.microsoft.com/en-us/services/cosmos-db/">Azure Cosmos DB</a> is Microsoft's globally distributed, multi-model database service for mission-critical applications. It supports turn-key global distribution, elastic scaling of throughput and storage worldwide, single-digit millisecond latencies at the 99th percentile, five well-defined consistency levels, and guaranteed high availability, all backed by industry-leading SLAs. Azure Cosmos DB automatically indexes data without requiring you to deal with schema and index management. It is multi-model and supports document, key-value, graph, and columnar data models.</p>
+<p><a href="https://azure.microsoft.com/en-us/services/documentdb/">DocumentDB</a> is a feature of Cosmos DB implementing a fully managed NoSQL database service built for fast performance, high availability, elastic scaling, and ease of development. As a schema-free NoSQL database, DocumentDB provides rich and familiar SQL query capabilities over JSON data, ensuring that 99% of your reads are served under 10 milliseconds and 99% of your writes are served under 15 milliseconds. These unique benefits make DocumentDB a great fit for Web, mobile, gaming, IoT, and many other applications that need seamless scale and global replication.</p>
+<p>In this lab, you will deploy a DocumentDB database under Cosmos DB to store customer and product order information for the fictitious company <em>Adventure Works</em>, and you will connect it to Azure Search to index the data and implement auto-suggest. You will also write a Web app that uses the database and demonstrates how easily applications can consume data from DocumentDB.</p>
 <p><a name="Objectives"></a></p>
 <h3>Objectives</h3>
 <p>In this hands-on lab, you will learn how to:</p>
 <ul>
-<li>Create an Azure DocumentDB account</li>
+<li>Create an Azure Cosmos DB account</li>
 <li>Create DocumentDB collections and populate them with documents</li>
 <li>Create an Azure Search service and and use it to index DocumentDB data</li>
-<li>Access Azure DocumentDB collections from your apps</li>
+<li>Access DocumentDB collections from your apps</li>
 <li>Query the Azure Search service connected to a DocumentDB database</li>
 </ul>
 <p><a name="Prerequisites"></a></p>
@@ -498,8 +499,8 @@ vertical-align:1px;
 <h2>Exercises</h2>
 <p>This hands-on lab includes the following exercises:</p>
 <ul>
-<li><a href="#Exercise1">Exercise 1: Create a DocumentDB account</a></li>
-<li><a href="#Exercise2">Exercise 2: Create a database and collections</a></li>
+<li><a href="#Exercise1">Exercise 1: Create a Cosmos DB account</a></li>
+<li><a href="#Exercise2">Exercise 2: Create a DocumentDB database and collections</a></li>
 <li><a href="#Exercise3">Exercise 3: Populate collections with documents</a></li>
 <li><a href="#Exercise4">Exercise 4: Connect Azure Search</a></li>
 <li><a href="#Exercise5">Exercise 5: Build an Azure Web App</a></li>
@@ -507,42 +508,42 @@ vertical-align:1px;
 </ul>
 <p>Estimated time to complete this lab: <strong>60</strong> minutes.</p>
 <p><a name="Exercise1"></a></p>
-<h2>Exercise 1: Create a DocumentDB account</h2>
-<p>The first step in working with Azure DocumentDB is to create a DocumentDB account to hold databases, collections, and documents. In this exercise, you will create a DocumentDB account using the Azure Portal.</p>
+<h2>Exercise 1: Create a Cosmos DB account</h2>
+<p>The first step in working with DocumentDB is to create a Cosmos DB account to hold databases, collections, and documents. In this exercise, you will create a Cosmos DB account using the Azure Portal.</p>
 <ol>
 <li>
 <p>Open the <a href="https://portal.azure.com">Azure Portal</a> in your browser. If you are asked to sign in, do so with your Microsoft Account.</p>
 </li>
 <li>
-<p>Click <strong>+ New</strong>, followed by <strong>Database</strong> and <strong>DocumentDB (NoSQL)</strong>.</p>
-<p><a href="Images/portal-create-new-documentdb.png" target="_blank"><img src="Images/portal-create-new-documentdb.png" alt="Creating a DocumentDB account" style="max-width:100%;"></a></p>
-<p><em>Creating a DocumentDB account</em></p>
+<p>Click <strong>+ New</strong>, followed by <strong>Databases</strong> and <strong>Azure Cosmos DB</strong>.</p>
+<p><a href="Images/portal-create-new-documentdb.png" target="_blank"><img src="Images/portal-create-new-documentdb.png" alt="Creating a Cosmos DB account" style="max-width:100%;"></a></p>
+<p><em>Creating a Cosmos DB account</em></p>
 </li>
 <li>
-<p>In the "NoSQL (DocumentDB)" blade, give the account a unique name such as "documentdbhol" and make sure a green check mark appears next to it. (You can only use numbers and lowercase letters since the name becomes part of a DNS name.) Make sure <strong>DocumentDB</strong> is selected for <strong>NoSQL API</strong>. Select <strong>Create new</strong> under <strong>Resource group</strong> and name the resource group "DocumentDBResourceGroup." Select the <strong>Location</strong> nearest you, and then click the <strong>Create</strong> button.</p>
-<p><a href="Images/portal-configure-new-documentdb.png" target="_blank"><img src="Images/portal-configure-new-documentdb.png" alt="Specifying DocumentDB parameters" style="max-width:100%;"></a></p>
-<p><em>Specifying DocumentDB parameters</em></p>
+<p>In the "Azure Cosmos DB" blade, give the account a unique name such as "documentdbhol" and make sure a green check mark appears next to it. (You can only use numbers and lowercase letters since the name becomes part of a DNS name.) Select <strong>SQL (DocumentDB)</strong> as the <strong>API</strong>. Then select <strong>Create new</strong> under <strong>Resource group</strong> and name the resource group "DocumentDBResourceGroup." Select the <strong>Location</strong> nearest you, and then click the <strong>Create</strong> button.</p>
+<p><a href="Images/portal-configure-new-documentdb.png" target="_blank"><img src="Images/portal-configure-new-documentdb.png" alt="Specifying Cosmos DB parameters" style="max-width:100%;"></a></p>
+<p><em>Specifying Cosmos DB parameters</em></p>
 </li>
 <li>
-<p>Click <strong>Resource groups</strong> in the ribbon on the left side of the portal, and then click the resource group created for the DocumentDB account.</p>
+<p>Click <strong>Resource groups</strong> in the ribbon on the left side of the portal, and then click the resource group created for the Cosmos DB account.</p>
 <p><a href="Images/open-resource-group.png" target="_blank"><img src="Images/open-resource-group.png" alt="Opening the resource group" style="max-width:100%;"></a></p>
 <p><em>Opening the resource group</em></p>
 </li>
 <li>
-<p>Wait until "Deploying" changes to "Succeeded," indicating that the DocumentDB account has been deployed. You can click the <strong>Refresh</strong> button at the top of the blade to refresh the deployment status.</p>
+<p>Wait until "Deploying" changes to "Succeeded," indicating that the Cosmos DB account has been deployed. You can click the <strong>Refresh</strong> button at the top of the blade to refresh the deployment status.</p>
 <p><a href="Images/deployment-status.png" target="_blank"><img src="Images/deployment-status.png" alt="Viewing the deployment status" style="max-width:100%;"></a></p>
 <p><em>Viewing the deployment status</em></p>
 </li>
 </ol>
-<p>Your DocumentDB account is now provisioned and ready for you to start working with it.</p>
+<p>Your Cosmos DB account is now provisioned and ready for you to start working with it.</p>
 <p><a name="Exercise2"></a></p>
-<h2>Exercise 2: Create a database and collections</h2>
-<p>Now that you’ve deployed a DocumentDB account, the next step is to create a database and add collections to it in preparation for storing documents. In this exercise, you will create a database and add three collections to it for storing information about customers, products, and orders.</p>
+<h2>Exercise 2: Create a DocumentDB database and collections</h2>
+<p>Now that you’ve created a Cosmos DB account, the next step is to create a database and add collections to it in preparation for storing documents. In this exercise, you will create a database and add three collections to it for storing information about customers, products, and orders.</p>
 <ol>
 <li>
-<p>Click the DocumentDB account that you deployed in <a href="#Exercise1">Exercise 1</a>.</p>
-<p><a href="Images/open-documentdb.png" target="_blank"><img src="Images/open-documentdb.png" alt="Opening the DocumentDB account" style="max-width:100%;"></a></p>
-<p><em>Opening the DocumentDB account</em></p>
+<p>Click the Cosmos DB account that you deployed in <a href="#Exercise1">Exercise 1</a>.</p>
+<p><a href="Images/open-documentdb.png" target="_blank"><img src="Images/open-documentdb.png" alt="Opening the Cosmos DB account" style="max-width:100%;"></a></p>
+<p><em>Opening the Cosmos DB account</em></p>
 </li>
 <li>
 <p>Click <strong>+ Add Collection</strong>.</p>
@@ -550,7 +551,7 @@ vertical-align:1px;
 <p><em>Adding a collection</em></p>
 </li>
 <li>
-<p>Enter "Customers" (without quotation marks) as the <strong>Collection Id</strong> and select <strong>10 GB</strong> as the <strong>STORAGE CAPACITY</strong>. Select <strong>Create New</strong> under <strong>DATABASE</strong> and specify "CustomerOrders" as the database name. Then click the <strong>OK</strong> button.</p>
+<p>Enter "Customers" (without quotation marks) as the <strong>Collection Id</strong> and select <strong>Fixed (10 GB)</strong> as the <strong>STORAGE CAPACITY</strong>. Select <strong>Create New</strong> under <strong>DATABASE</strong> and specify "CustomerOrders" as the database name. Then click the <strong>OK</strong> button.</p>
 <p><a href="Images/create-collection-and-database.png" target="_blank"><img src="Images/create-collection-and-database.png" alt="Creating a Customers collection" style="max-width:100%;"></a></p>
 <p><em>Creating a Customers collection</em></p>
 </li>
@@ -597,13 +598,9 @@ vertical-align:1px;
 </li>
 <li>
 <p>Close the "Upload Document" blade and return to the "Document Explorer" blade. Select <strong>Orders</strong> from the drop-down list of collections and click <strong>Upload</strong>. Then upload all of the files in this lab's "Resources/Orders" folder to the Orders collection.</p>
-<p><a href="Images/upload-order-data.png" target="_blank"><img src="Images/upload-order-data.png" alt="Uploading order data" style="max-width:100%;"></a></p>
-<p><em>Uploading order data</em></p>
 </li>
 <li>
 <p>Repeat this process to upload all of the files in this lab's "Resources/Products" folder to the Products collection.</p>
-<p><a href="Images/upload-product-data.png" target="_blank"><img src="Images/upload-product-data.png" alt="Uploading product data" style="max-width:100%;"></a></p>
-<p><em>Uploading product data</em></p>
 </li>
 <li>
 <p>The next step is to validate the document uploads by querying one or more of the collections. Click <strong>Query Explorer</strong> in the menu on the left. Select <strong>Orders</strong> in the drop-down list of collections, and then click the <strong>Run Query</strong>.</p>
@@ -633,7 +630,7 @@ vertical-align:1px;
 <p><em>Creating a new Azure Search service</em></p>
 </li>
 <li>
-<p>In the "New Search Service" blade, give the service a unique name in the <strong>URL</strong> box and make sure a green check mark appears next to it. (You can only use numbers and lowercase letters since the name becomes part of a DNS name.) Select <strong>Use existing</strong> under <strong>Resource group</strong> and select the resource group you created for the DocumentDB account in <a href="#Exercise1">Exercise 1</a>.Select the <strong>Location</strong> nearest you, and then click the <strong>Create</strong> button.</p>
+<p>In the "New Search Service" blade, give the service a unique name in the <strong>URL</strong> box and make sure a green check mark appears next to it. (You can only use numbers and lowercase letters since the name becomes part of a DNS name.) Select <strong>Use existing</strong> under <strong>Resource group</strong> and select the resource group you created for the Cosmos DB account in <a href="#Exercise1">Exercise 1</a>.Select the <strong>Location</strong> nearest you, and then click the <strong>Create</strong> button.</p>
 <p><a href="Images/portal-configure-new-search-service.png" target="_blank"><img src="Images/portal-configure-new-search-service.png" alt="Specifying Search parameters" style="max-width:100%;"></a></p>
 <p><em>Specifying Search parameters</em></p>
 </li>
@@ -643,10 +640,7 @@ vertical-align:1px;
 <p><em>Opening the resource group</em></p>
 </li>
 <li>
-<p>Wait until "Deploying" changes to "Succeeded," indicating that the Search service has been deployed. Then click the Search service.</p>
-<blockquote>
-<p>Refresh the page in the browser every now and then to update the deployment status. Clicking the <strong>Refresh</strong> button in the resource-group blade refreshes the list of resources in the resource group, but does not reliably update the deployment status.</p>
-</blockquote>
+<p>Wait until "Deploying" changes to "Succeeded," indicating that the Search service has been deployed. (You can click the <strong>Refresh</strong> button at the top of the blade to refresh the deployment status.) Then click the Search service.</p>
 <p><a href="Images/open-search.png" target="_blank"><img src="Images/open-search.png" alt="Opening the Search service" style="max-width:100%;"></a></p>
 <p><em>Opening the Search service</em></p>
 </li>
@@ -656,17 +650,17 @@ vertical-align:1px;
 <p><em>Importing data</em></p>
 </li>
 <li>
-<p>Click <strong>Data Source</strong>, followed by <strong>DocumentDB</strong>. In the "New data source" blade, type "customers" (without quotation marks) into the <strong>Name</strong> field. Click <strong>Select an account</strong> and select the DocumentDB account you created in <a href="#Exercise1">Exercise 1</a>. Select the <strong>CustomerOrders</strong> database and the <strong>Customers</strong> collection. Then click <strong>OK</strong>.</p>
+<p>Click <strong>Data Source</strong>, followed by <strong>DocumentDB</strong>. In the "New data source" blade, type "customers" into the <strong>Name</strong> field. Click <strong>Select an account</strong> and select the Cosmos DB account you created in <a href="#Exercise1">Exercise 1</a>. Select the <strong>CustomerOrders</strong> database and the <strong>Customers</strong> collection. Then click <strong>OK</strong>.</p>
 <p><a href="Images/portal-connect-search-datasource.png" target="_blank"><img src="Images/portal-connect-search-datasource.png" alt="Connecting to a data source" style="max-width:100%;"></a></p>
 <p><em>Connecting to a data source</em></p>
 </li>
 <li>
-<p>Click <strong>Index</strong> in the "Import data" blade. In the "Index" blade, type "customerindex" (without quotation marks) into the <strong>Index name</strong> field, and then check all five boxes in the CompanyName row. Then click <strong>OK</strong>.</p>
+<p>Click <strong>Customize target index</strong> in the "Import data" blade. In the "Index" blade, type "customerindex" (without quotation marks) into the <strong>Index name</strong> field, and check all five boxes in the CompanyName row. Then click <strong>OK</strong>.</p>
 <p><a href="Images/portal-configure-search-index.png" target="_blank"><img src="Images/portal-configure-search-index.png" alt="Configuring a search index" style="max-width:100%;"></a></p>
 <p><em>Configuring a search index</em></p>
 </li>
 <li>
-<p>Click <strong>Indexer</strong> in the "Import data" blade. In the "Indexer" blade, type "customerindexer" into the <strong>Name</strong> field and click <strong>OK</strong>. Finish up by clicking the <strong>OK</strong> button at the bottom of the "Import data" blade.</p>
+<p>Click <strong>Import your data</strong> in the "Import data" blade. In the "Create an Indexer" blade, type "customerindexer" into the <strong>Name</strong> field and click <strong>OK</strong>. Finish up by clicking the <strong>OK</strong> button at the bottom of the "Import data" blade.</p>
 <p><a href="Images/portal-configure-search-indexer.png" target="_blank"><img src="Images/portal-configure-search-indexer.png" alt="Configuring a search indexer" style="max-width:100%;"></a></p>
 <p><em>Configuring a search indexer</em></p>
 </li>
@@ -730,21 +724,19 @@ vertical-align:1px;
 <p><em>Opening Web.config</em></p>
 </li>
 <li>
-<p>Return to the Azure Portal and open the blade for the DocumentDB account that you created in <a href="#Exercise1">Exercise 1</a>. Click <strong>Keys</strong>. Then click <strong>Read-only keys</strong>, and click the <strong>Copy</strong> button to the right of the <strong>URI</strong> box to copy the DocumentDB URI to the clipboard.</p>
+<p>Return to the Azure Portal and open the blade for the Cosmos DB account that you created in <a href="#Exercise1">Exercise 1</a>. Click <strong>Keys</strong>. Then click <strong>Read-only keys</strong>, and click the <strong>Copy</strong> button to the right of the <strong>URI</strong> box to copy the DocumentDB URI to the clipboard.</p>
 <p><a href="Images/copy-documentdb-uri.png" target="_blank"><img src="Images/copy-documentdb-uri.png" alt="Copying the DocumentDB URI" style="max-width:100%;"></a></p>
 <p><em>Copying the DocumentDB URI</em></p>
 </li>
 <li>
-<p>Return to Visual Studio. In <strong>Web.config</strong>, add the following statement to the &lt;appSettings&gt; section, replacing <em>documentdb_endpoint</em> with the URI on the clipboard:</p>
+<p>Return to Visual Studio. In <strong>Web.config</strong>, add the following statement to the <code>&lt;appSettings&gt;</code> section, replacing <em>documentdb_endpoint</em> with the URI on the clipboard:</p>
 <div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>DocumentDBEndpointUrl<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>documentdb_endpoint<span class="pl-pds">"</span></span> /&gt;</pre></div>
 </li>
 <li>
 <p>Return to the Azure Portal and click the <strong>Copy</strong> button to the right of <strong>PRIMARY READ-ONLY KEY</strong> to copy the access key the clipboard.</p>
-<p><a href="Images/copy-documentdb-key.png" target="_blank"><img src="Images/copy-documentdb-key.png" alt="Copying the DocumentDB access key" style="max-width:100%;"></a></p>
-<p><em>Copying the DocumentDB access key</em></p>
 </li>
 <li>
-<p>Return to Visual Studio. In <strong>Web.config</strong>, add the following statement to the &lt;appSettings&gt; section, replacing <em>documentdb_key</em> with the access key on the clipboard:</p>
+<p>Return to Visual Studio. In <strong>Web.config</strong>, add the following statement to the <code>&lt;appSettings&gt;</code> section, replacing <em>documentdb_key</em> with the access key on the clipboard:</p>
 <div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>DocumentDBKey<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>documentdb_key<span class="pl-pds">"</span></span> /&gt;</pre></div>
 </li>
 <li>
@@ -803,7 +795,7 @@ vertical-align:1px;
 <p><em>Adding a class to the "Models" folder</em></p>
 </li>
 <li>
-<p>Replace the empty <em>OrderInformation</em> class with the following class definitions, and note that you are making the classes public rather than private, as well as marking the <em>OrderInformation</em> class "Serializable:"</p>
+<p>Replace the empty <code>OrderInformation</code> class with the following class definitions, and note that you are making the classes public rather than private, as well as attributing it <code>Serializable</code>:</p>
 <div class="highlight highlight-source-cs"><pre>[Serializable]
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">OrderInformation</span>
 {
@@ -873,7 +865,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Right-click the "Models" folder again and use the <strong>Add -&gt; Class...</strong> command to add a file named <strong>SearchResultInformation.cs</strong> to the folder. Replace the empty <em>SearchResultInformation</em> class with the following class definition:</p>
+<p>Right-click the "Models" folder again and use the <strong>Add -&gt; Class...</strong> command to add a file named <strong>SearchResultInformation.cs</strong> to the folder. Replace the empty <code>SearchResultInformation</code> class with the following class definition:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">SearchResultInformation</span>
 {
     <span class="pl-k">public </span><span class="pl-k">string</span> <span class="pl-en">Title</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
@@ -882,7 +874,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Repeat this process to add an <em>OrderViewModel</em> class to the "Models" folder, and replace the empty class with the following class definition:</p>
+<p>Repeat this process to add an <code>OrderViewModel</code> class to the "Models" folder, and replace the empty class with the following class definition:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">OrderViewModel</span>
 {
     <span class="pl-k">public </span><span class="pl-k">string</span> <span class="pl-en">SearchQuery</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
@@ -915,9 +907,7 @@ vertical-align:1px;
         {
             <span class="pl-k">string</span> <span class="pl-en">endpointUrl</span> = Microsoft.Azure.CloudConfigurationManager.GetSetting(<span class="pl-s"><span class="pl-pds">"</span>DocumentDBEndpointUrl<span class="pl-pds">"</span></span>);
             <span class="pl-k">string</span> <span class="pl-en">primaryKey</span> = Microsoft.Azure.CloudConfigurationManager.GetSetting(<span class="pl-s"><span class="pl-pds">"</span>DocumentDBKey<span class="pl-pds">"</span></span>);
-
             <span class="pl-en">DocumentClient</span> <span class="pl-en">client</span> = <span class="pl-k">new</span> <span class="pl-en">DocumentClient</span>(<span class="pl-k">new</span> <span class="pl-en">Uri</span>(<span class="pl-en">endpointUrl</span>), primaryKey);
-
             <span class="pl-k">return</span> client;
         }
 
@@ -939,11 +929,9 @@ vertical-align:1px;
             }
             <span class="pl-k">catch</span> (Exception ex)
             {
-
             }
 
             <span class="pl-k">return</span> collections;
-
         }
 
         <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-en">List</span>&lt;<span class="pl-en">SearchResultInformation</span>&gt; <span class="pl-en">GetOrdersByOrder</span>(<span class="pl-en">DocumentClient</span> <span class="pl-smi">client</span>, <span class="pl-k">string</span> <span class="pl-smi">countryName</span>)
@@ -1023,15 +1011,12 @@ vertical-align:1px;
 <span class="pl-k">using</span> <span class="pl-en">AdventureDocs.Models</span>;</pre></div>
 </li>
 <li>
-<p>Replace the <em>Index</em> method in <strong>HomeController.cs</strong> with the following implementation:</p>
+<p>Replace the <code>Index</code> method in <strong>HomeController.cs</strong> with the following implementation:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">async</span> <span class="pl-en">Task</span>&lt;<span class="pl-en">ActionResult</span>&gt; <span class="pl-en">Index</span>()
 {
     <span class="pl-k">var</span> <span class="pl-en">model </span>= <span class="pl-k">new</span> <span class="pl-en">OrderViewModel</span>() { SearchResults = <span class="pl-k">new</span> <span class="pl-en">List</span>&lt;SearchResultInformation&gt;() };
-
     <span class="pl-k">var</span> <span class="pl-en">documentClient </span>= Helpers.DocumentHelper.GetDocumentClient();
-
     <span class="pl-k">var</span> <span class="pl-en">availableCollections </span>= <span class="pl-k">await</span> Helpers.DocumentHelper.GetAvailableCollectionNamesAsync(documentClient);
-
     <span class="pl-k">var</span> <span class="pl-en">searchResults </span>= (List&lt;SearchResultInformation&gt;)TempData[<span class="pl-s"><span class="pl-pds">"</span>SearchResults<span class="pl-pds">"</span></span>];
     <span class="pl-k">var</span> <span class="pl-en">searchQuery </span>= (<span class="pl-k">string</span>)Request[<span class="pl-s"><span class="pl-pds">"</span>SearchQuery<span class="pl-pds">"</span></span>];
 
@@ -1039,7 +1024,6 @@ vertical-align:1px;
     {
         model.SearchQuery = (<span class="pl-k">string</span>)TempData[<span class="pl-s"><span class="pl-pds">"</span>SearchQuery<span class="pl-pds">"</span></span>];
         model.SearchResults = (List&lt;SearchResultInformation&gt;)TempData[<span class="pl-s"><span class="pl-pds">"</span>SearchResults<span class="pl-pds">"</span></span>];
-
         model.SelectedCollectionName = (<span class="pl-k">string</span>)TempData[<span class="pl-s"><span class="pl-pds">"</span>SelectedCollectionName<span class="pl-pds">"</span></span>];
         model.SearchResultTitle = <span class="pl-pds">$"</span>{model.SelectedCollectionName}<span class="pl-pds">"</span>;
         model.SearchResultDescription = <span class="pl-pds">$"</span><span class="pl-s">The following results were found in </span>{model.SelectedCollectionName}<span class="pl-s"> for '</span>{model.SearchQuery.ToUpper()}<span class="pl-s">':</span><span class="pl-pds">"</span>;
@@ -1047,11 +1031,8 @@ vertical-align:1px;
     <span class="pl-k">else</span> <span class="pl-k">if</span> (!<span class="pl-k">string</span>.IsNullOrEmpty(searchQuery))
     {
         model.SearchQuery = searchQuery;
-
         searchResults = Helpers.DocumentHelper.GetOrdersByCustomer(documentClient, searchQuery);
-
         model.SearchResults = searchResults;
-
         model.SelectedCollectionName = <span class="pl-s"><span class="pl-pds">"</span>Customers<span class="pl-pds">"</span></span>;
         model.SearchResultTitle = <span class="pl-pds">$"</span>{model.SelectedCollectionName}<span class="pl-pds">"</span>;
         model.SearchResultDescription = <span class="pl-pds">$"</span><span class="pl-s">The following results were found in </span>{model.SelectedCollectionName}<span class="pl-s"> for '</span>{model.SearchQuery.ToUpper()}<span class="pl-s">':</span><span class="pl-pds">"</span>;
@@ -1070,7 +1051,7 @@ vertical-align:1px;
 </pre></div>
 </li>
 <li>
-<p>Add the following methods to the <em>HomeController</em> class in <strong>HomeController.cs</strong>:</p>
+<p>Add the following methods to the <code>HomeController</code> class in <strong>HomeController.cs</strong>:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-en">ActionResult</span> <span class="pl-en">Lookup</span>()
 {
     ViewBag.Message = <span class="pl-s"><span class="pl-pds">"</span>Your application description page.<span class="pl-pds">"</span></span>;
@@ -1091,11 +1072,8 @@ vertical-align:1px;
 <span class="pl-k">public</span> <span class="pl-en">ActionResult</span> <span class="pl-en">Search</span>(<span class="pl-en">OrderViewModel</span> <span class="pl-smi">model</span>)
 {
     ViewBag.Message = <span class="pl-s"><span class="pl-pds">"</span>Your application description page.<span class="pl-pds">"</span></span>;
-
     <span class="pl-k">string</span> <span class="pl-en">searchQuery</span> = model.SearchQuery + <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>;
-
     <span class="pl-k">var</span> <span class="pl-en">documentClient </span>= Helpers.DocumentHelper.GetDocumentClient();
-
     <span class="pl-en">List</span>&lt;<span class="pl-en">SearchResultInformation</span>&gt; <span class="pl-en">searchResults</span> = <span class="pl-k">new</span> <span class="pl-en">List</span>&lt;SearchResultInformation&gt;();
 
     <span class="pl-k">switch</span> (model.SelectedCollectionName)
@@ -1213,7 +1191,7 @@ vertical-align:1px;
 &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 </li>
 <li>
-<p>Open <strong>BundleConfig.cs</strong> in the project's "App_Start" folder. Add the following code at the end of the <strong>RegisterBundles</strong> method:</p>
+<p>Open <strong>BundleConfig.cs</strong> in the project's "App_Start" folder. Add the following code at the end of the <code>RegisterBundles</code> method:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-en">bundles.Add</span>(new <span class="pl-en">ScriptBundle</span>(<span class="pl-s"><span class="pl-pds">"</span>~/bundles/jqueryui<span class="pl-pds">"</span></span>).<span class="pl-en">Include</span>(<span class="pl-s"><span class="pl-pds">"</span>~/Scripts/jquery-ui-{version}.js<span class="pl-pds">"</span></span>));
 <span class="pl-en">bundles.Add</span>(new <span class="pl-en">StyleBundle</span>(<span class="pl-s"><span class="pl-pds">"</span>~/Content/themes/base/css<span class="pl-pds">"</span></span>).<span class="pl-en">Include</span>(
             <span class="pl-s"><span class="pl-pds">"</span>~/Content/themes/base/jquery.ui.core.css<span class="pl-pds">"</span></span>,
@@ -1272,9 +1250,7 @@ vertical-align:1px;
             <span class="pl-k">string</span> <span class="pl-en">searchServiceKey</span> = Microsoft.Azure.CloudConfigurationManager.GetSetting(<span class="pl-s"><span class="pl-pds">"</span>SearchServiceKey<span class="pl-pds">"</span></span>);
 
             <span class="pl-en">SearchServiceClient</span> <span class="pl-en">serviceClient</span> = <span class="pl-k">new</span> <span class="pl-en">SearchServiceClient</span>(searchServiceName, <span class="pl-k">new</span> <span class="pl-en">SearchCredentials</span>(<span class="pl-en">searchServiceKey</span>));
-
             <span class="pl-en">ISearchIndexClient</span> <span class="pl-en">indexClient</span> = serviceClient.Indexes.GetClient(<span class="pl-s"><span class="pl-pds">"</span>customerindex<span class="pl-pds">"</span></span>);
-
             <span class="pl-en">DocumentSearchResult</span>&lt;<span class="pl-en">Customer</span>&gt; <span class="pl-en">response</span> = indexClient.Documents.Search&lt;Customer&gt;(<span class="pl-pds">$"</span>{query.Trim()}<span class="pl-s">*</span><span class="pl-pds">"</span>);
 
             suggestions = (<span class="pl-k">from</span> result <span class="pl-k">in</span> response.Results
@@ -1286,7 +1262,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Open <strong>Web.config</strong> and add the following statement to the &lt;appSettings&gt; section, replacing <em>search_service_name</em> with the name you assigned to the Azure Search service in Exercise 4, Step 2:</p>
+<p>Open <strong>Web.config</strong> and add the following statement to the <code>&lt;appSettings&gt;</code> section, replacing <em>search_service_name</em> with the name you assigned to the Azure Search service in Exercise 4, Step 2:</p>
 <div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>SearchServiceName<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>search_service_name<span class="pl-pds">"</span></span> /&gt;</pre></div>
 </li>
 <li>
@@ -1298,11 +1274,11 @@ vertical-align:1px;
 <p><em>Copying the query key to the clipboard</em></p>
 </li>
 <li>
-<p>Return to Visual Studio. Add the following statement to the &lt;appSettings&gt; section of <strong>Web.config</strong>, replacing <em>search_service_key</em> with the query key on the clipboard.</p>
+<p>Return to Visual Studio. Add the following statement to the <code>&lt;appSettings&gt;</code> section of <strong>Web.config</strong>, replacing <em>search_service_key</em> with the query key on the clipboard.</p>
 <div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>SearchServiceKey<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>search_service_key<span class="pl-pds">"</span></span> /&gt;</pre></div>
 </li>
 <li>
-<p>Add the following methods to the <em>HomeController</em> class in <strong>HomeController.cs</strong>:</p>
+<p>Add the following methods to the <code>HomeController</code> class in <strong>HomeController.cs</strong>:</p>
 <div class="highlight highlight-source-cs"><pre>[HttpPost]
 <span class="pl-k">public</span> <span class="pl-en">ActionResult</span> <span class="pl-en">AutoSearch</span>(<span class="pl-k">string</span> <span class="pl-smi">item</span>)
 {
@@ -1349,15 +1325,15 @@ vertical-align:1px;
 <h2>Summary</h2>
 <p>In this hands-on lab you learned how to:</p>
 <ul>
-<li>Create an Azure DocumentDB account</li>
+<li>Create an Azure Cosmos DB account</li>
 <li>Create DocumentDB collections and populate them with documents</li>
 <li>Create an Azure Search service and and use it to index DocumentDB data</li>
-<li>Access Azure DocumentDB collections from your apps</li>
+<li>Access DocumentDB collections from your apps</li>
 <li>Query the Azure Search service connected to a DocumentDB database</li>
 </ul>
 <p>Not surprisingly, there is much more you can do to leverage the power of Azure DocumentDB. Experiment with other DocumentDB features, especially <a href="https://docs.microsoft.com/en-us/azure/documentdb/documentdb-programming">triggers, stored procedures, and user-defined functions</a>, and identify other ways you can enhance your data and search strategies by integrating Azure DocumentDB into your application ecosystems.</p>
 <hr>
-<p>Copyright 2016 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.</p>
+<p>Copyright 2017 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.</p>
 </body>
 </html>
 <!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
