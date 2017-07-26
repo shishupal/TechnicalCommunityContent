@@ -105,7 +105,13 @@ Now that you've created a SQL Database in Azure, the next step is to add data. I
 
     _Opening the Northwind database_	
 
-1. Click **Tools**. Then click **Open in Visual Studio** in the "Tools" blade, and click the **Open in Visual Studio** button in the "Open in Visual Studio" blade. 
+1. Click **Tools**.
+
+    ![Opening database tools](Images/open-tools.png)
+
+    _Opening database tools_	
+
+1. Click **Open in Visual Studio** in the "Tools" blade, and click the **Open in Visual Studio** button in the "Open in Visual Studio" blade. 
 
 	> You may be prompted to allow the Microsoft Visual Studio Web Protocol Handler to switch from your browser to Visual Studio. If you are, click **Yes**.
  
@@ -256,7 +262,7 @@ Most modern apps — mobile apps especially — store data remotely, either in a
 
     _Adding the OrderInformation class_				
 	
-1. Replace the empty *OrderInformation* class with the following class definitions, and note that you are making the classes public rather than private. The purpose of these classes is to model the data for customers, products, and orders.
+1. Replace the empty ```OrderInformation``` class with the following class definitions, and note that you are making the classes public rather than private. The purpose of these classes is to model the data for customers, products, and orders.
 	
 	```C#
 	public class OrderInformation
@@ -322,7 +328,7 @@ Most modern apps — mobile apps especially — store data remotely, either in a
 	
 1. In Solution Explorer, right-click the project and use the **Add -> New Folder** command to add a folder named "Helpers" to the root of the project.
  
-1. Right-click the "Helpers" folder and use the **Add -> Class...** command to add a class file named **OrderHelper.cs**. Then replace the contents of the file with the statements below. The methods in the *OrderHelper* class provide access to order data via the Entity Framework data model:
+1. Right-click the "Helpers" folder and use the **Add -> Class...** command to add a class file named **OrderHelper.cs**. Then replace the contents of the file with the statements below. The methods in the ```OrderHelper``` class provide access to order data via the Entity Framework data model:
 
 	```C#
 	using OrderViewServices.Models;
@@ -368,7 +374,6 @@ Most modern apps — mobile apps especially — store data remotely, either in a
 	                }
 	                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
 	                {
-	
 	                }
 	                finally
 	                {
@@ -399,7 +404,6 @@ Most modern apps — mobile apps especially — store data remotely, either in a
 	                }
 	                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
 	                {
-	
 	                }
 	                finally
 	                {
@@ -413,7 +417,7 @@ Most modern apps — mobile apps especially — store data remotely, either in a
 	}
 	```
 
-1. Locate the *CreateConnectionString* method near the top of the file and replace *database_server_name* on line 22 with the name you assigned to the database server in Exercise 1, Step 4. 
+1. Locate the ```CreateConnectionString``` method near the top of the file and replace *database_server_name* on line 22 with the name you assigned to the database server in Exercise 1, Step 4. 
 
 1. In Solution Explorer, right-click the project and use the **Add -> New Folder** command to add a folder named "Extensions" to the root of the project.
 
@@ -521,13 +525,13 @@ Most modern apps — mobile apps especially — store data remotely, either in a
 
     _Adding a new controller_	
 
-1. Add the following `using` statement to the top of the file:
+1. Add the following ```using``` statement to the top of the file:
 
 	```C#
 	using OrderViewServices.Models;
 	```
 
-1. Add the following API controller methods to the *OrdersController* class:
+1. Add the following API controller methods to the ```OrdersController``` class:
  
 	```C#
 	public IEnumerable<OrderInformation> GetOrders()
@@ -547,7 +551,7 @@ Most modern apps — mobile apps especially — store data remotely, either in a
     }
 	```
 
-1. You can use your browser to test the API App by calling methods and seeing what's returned. Use Visual Studio's **Debug -> Start Without Debugging** command (or simply press **Ctrl+F5**) to launch the application in your browser. Initially, you will see a 403 error because no method was specified. But now append "/api/Orders" to the URL in the browser's address bar and press **Enter**. This will call the *GetOrders* method in the *OrdersController class*. Confirm that an array of JSON objects representing orders is returned:
+1. You can use your browser to test the API App by calling methods and seeing what's returned. Use Visual Studio's **Debug -> Start Without Debugging** command (or simply press **Ctrl+F5**) to launch the application in your browser. Initially, you will see a 403 error because no method was specified. But now append "/api/Orders" to the URL in the browser's address bar and press **Enter**. This will call the ```GetOrders``` method in the ```OrdersController class```. Confirm that an array of JSON objects representing orders is returned:
  
     ![JSON returned by the GetOrders method](Images/ie-api-specified.png)
 
@@ -647,7 +651,7 @@ A Web service that features a REST interface like the Azure API App you deployed
 	}
 	```
 
-1. Right-click the "OrderView" project and use the **Add -> New Folder** command to add a folder named "Models" to the root of the project. Right-click the "Models" folder and use the **Add -> Class...** command to add a class file named **OrderInformation.cs**. Then replace the empty *OrderInformation* class with the following class definitions:
+1. Right-click the "OrderView" project and use the **Add -> New Folder** command to add a folder named "Models" to the root of the project. Right-click the "Models" folder and use the **Add -> Class...** command to add a class file named **OrderInformation.cs**. Then replace the empty ```OrderInformation``` class with the following class definitions:
 
 	```C#
   
@@ -732,7 +736,7 @@ A Web service that features a REST interface like the Azure API App you deployed
     }
 	```
 
-1. Right-click the "Models" folder again and use the **Add -> Class...** command to add a class file named **MainViewModel.cs**. Replace the contents of the file with the following statements, and observe that the *MainViewModel* class implements the *BindableBase* class created earlier:
+1. Right-click the "Models" folder again and use the **Add -> Class...** command to add a class file named **MainViewModel.cs**. Replace the contents of the file with the following statements, and observe that the ```MainViewModel``` class implements the ```BindableBase``` class created earlier:
 
 	```C#
 	using System;
@@ -810,11 +814,8 @@ A Web service that features a REST interface like the Azure API App you deployed
 	        public async void LoadOrdersAsync(string filter)
 	        {
 	            this.IsLoading = true;
-	
 	            await Helpers.OrderHelper.SetUserAsync(this.SelectedSalesperson.UserName);
-	
 	            this.CurrentOrders.Clear();
-	
 	            var orders = await Helpers.OrderHelper.GetOrdersAsync(filter);
 	
 	            foreach (var order in orders)
@@ -828,11 +829,8 @@ A Web service that features a REST interface like the Azure API App you deployed
 	        public async void LoadOrdersAsync()
 	        {
 	            this.IsLoading = true;
-	
 	            await Helpers.OrderHelper.SetUserAsync(this.SelectedSalesperson.UserName);
-	
 	            this.CurrentOrders.Clear();
-	
 	            var orders = await Helpers.OrderHelper.GetOrdersAsync();
 	
 	            foreach (var order in orders)
@@ -928,7 +926,7 @@ A Web service that features a REST interface like the Azure API App you deployed
 
 1. Replace *order_api_url* on line 14 with the URL of your API App — the one you copied into your favorite text editor at the end of [Exercise 3](#Exercisw3).
 
-1. Open **MainPage.xaml** and replace the empty `Grid` element with the following markup:
+1. Open **MainPage.xaml** and replace the empty ```Grid``` element with the following markup:
 
 	```XML
 	<Page.Resources>
@@ -1022,13 +1020,13 @@ A Web service that features a REST interface like the Azure API App you deployed
 	```
 	> The markup that you just inserted is Extensible Application Markup Language, or XAML. XAML is a language created by Microsoft for building user interfaces. It was originally created for WPF, but has since been repurposed for Universal Windows apps. Combined with Xamarin Forms, it can even be used to build user interfaces for iOS and Android. It is an extremely expressive language that enjoys designer support in Visual Studio and other popular tools.
 
-1. Now open **MainPage.xaml.cs** and add the following `using` statement to those already at the top of the page:
+1. Now open **MainPage.xaml.cs** and add the following ```using``` statement to those already at the top of the page:
 
 	```C#
 	using OrderView.Models;
 	```
 
-1. Still in **MainPage.xaml.cs**, replace everything inside the *MainPage* class with the following code:
+1. Still in **MainPage.xaml.cs**, replace everything inside the ```MainPage``` class with the following code:
 
 	```C#
 	MainViewModel ViewModel = new MainViewModel();
@@ -1171,4 +1169,4 @@ There is *much* more to learn about Azure SQL Database than one lab can cover. F
 
 ----
 
-Copyright 2016 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at https://opensource.org/licenses/MIT.
+Copyright 2017 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at https://opensource.org/licenses/MIT.

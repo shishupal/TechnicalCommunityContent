@@ -557,7 +557,12 @@ vertical-align:1px;
 <p><em>Opening the Northwind database</em></p>
 </li>
 <li>
-<p>Click <strong>Tools</strong>. Then click <strong>Open in Visual Studio</strong> in the "Tools" blade, and click the <strong>Open in Visual Studio</strong> button in the "Open in Visual Studio" blade.</p>
+<p>Click <strong>Tools</strong>.</p>
+<p><a href="Images/open-tools.png" target="_blank"><img src="Images/open-tools.png" alt="Opening database tools" style="max-width:100%;"></a></p>
+<p><em>Opening database tools</em></p>
+</li>
+<li>
+<p>Click <strong>Open in Visual Studio</strong> in the "Tools" blade, and click the <strong>Open in Visual Studio</strong> button in the "Open in Visual Studio" blade.</p>
 <blockquote>
 <p>You may be prompted to allow the Microsoft Visual Studio Web Protocol Handler to switch from your browser to Visual Studio. If you are, click <strong>Yes</strong>.</p>
 </blockquote>
@@ -687,7 +692,7 @@ vertical-align:1px;
 <p><em>Adding the OrderInformation class</em></p>
 </li>
 <li>
-<p>Replace the empty <em>OrderInformation</em> class with the following class definitions, and note that you are making the classes public rather than private. The purpose of these classes is to model the data for customers, products, and orders.</p>
+<p>Replace the empty <code>OrderInformation</code> class with the following class definitions, and note that you are making the classes public rather than private. The purpose of these classes is to model the data for customers, products, and orders.</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">OrderInformation</span>
 {
     <span class="pl-k">public </span><span class="pl-k">int</span> <span class="pl-en">OrderId</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
@@ -752,7 +757,7 @@ vertical-align:1px;
 <p>In Solution Explorer, right-click the project and use the <strong>Add -&gt; New Folder</strong> command to add a folder named "Helpers" to the root of the project.</p>
 </li>
 <li>
-<p>Right-click the "Helpers" folder and use the <strong>Add -&gt; Class...</strong> command to add a class file named <strong>OrderHelper.cs</strong>. Then replace the contents of the file with the statements below. The methods in the <em>OrderHelper</em> class provide access to order data via the Entity Framework data model:</p>
+<p>Right-click the "Helpers" folder and use the <strong>Add -&gt; Class...</strong> command to add a class file named <strong>OrderHelper.cs</strong>. Then replace the contents of the file with the statements below. The methods in the <code>OrderHelper</code> class provide access to order data via the Entity Framework data model:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> <span class="pl-en">OrderViewServices.Models</span>;
 <span class="pl-k">using</span> <span class="pl-en">System</span>;
 <span class="pl-k">using</span> <span class="pl-en">System.Collections.Generic</span>;
@@ -796,7 +801,6 @@ vertical-align:1px;
                 }
                 <span class="pl-k">catch</span> (System.Data.Entity.Infrastructure.DbUpdateException ex)
                 {
-
                 }
                 <span class="pl-k">finally</span>
                 {
@@ -827,7 +831,6 @@ vertical-align:1px;
                 }
                 <span class="pl-k">catch</span> (System.Data.Entity.Infrastructure.DbUpdateException ex)
                 {
-
                 }
                 <span class="pl-k">finally</span>
                 {
@@ -841,7 +844,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Locate the <em>CreateConnectionString</em> method near the top of the file and replace <em>database_server_name</em> on line 22 with the name you assigned to the database server in Exercise 1, Step 4.</p>
+<p>Locate the <code>CreateConnectionString</code> method near the top of the file and replace <em>database_server_name</em> on line 22 with the name you assigned to the database server in Exercise 1, Step 4.</p>
 </li>
 <li>
 <p>In Solution Explorer, right-click the project and use the <strong>Add -&gt; New Folder</strong> command to add a folder named "Extensions" to the root of the project.</p>
@@ -953,7 +956,7 @@ vertical-align:1px;
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> <span class="pl-en">OrderViewServices.Models</span>;</pre></div>
 </li>
 <li>
-<p>Add the following API controller methods to the <em>OrdersController</em> class:</p>
+<p>Add the following API controller methods to the <code>OrdersController</code> class:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-en">IEnumerable</span>&lt;<span class="pl-en">OrderInformation</span>&gt; <span class="pl-en">GetOrders</span>()
 {
     <span class="pl-k">return</span> Helpers.OrderHelper.GetOrders();
@@ -971,7 +974,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>You can use your browser to test the API App by calling methods and seeing what's returned. Use Visual Studio's <strong>Debug -&gt; Start Without Debugging</strong> command (or simply press <strong>Ctrl+F5</strong>) to launch the application in your browser. Initially, you will see a 403 error because no method was specified. But now append "/api/Orders" to the URL in the browser's address bar and press <strong>Enter</strong>. This will call the <em>GetOrders</em> method in the <em>OrdersController class</em>. Confirm that an array of JSON objects representing orders is returned:</p>
+<p>You can use your browser to test the API App by calling methods and seeing what's returned. Use Visual Studio's <strong>Debug -&gt; Start Without Debugging</strong> command (or simply press <strong>Ctrl+F5</strong>) to launch the application in your browser. Initially, you will see a 403 error because no method was specified. But now append "/api/Orders" to the URL in the browser's address bar and press <strong>Enter</strong>. This will call the <code>GetOrders</code> method in the <code>OrdersController class</code>. Confirm that an array of JSON objects representing orders is returned:</p>
 <p><a href="Images/ie-api-specified.png" target="_blank"><img src="Images/ie-api-specified.png" alt="JSON returned by the GetOrders method" style="max-width:100%;"></a></p>
 <p><em>JSON returned by the GetOrders method</em></p>
 </li>
@@ -1065,7 +1068,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Right-click the "OrderView" project and use the <strong>Add -&gt; New Folder</strong> command to add a folder named "Models" to the root of the project. Right-click the "Models" folder and use the <strong>Add -&gt; Class...</strong> command to add a class file named <strong>OrderInformation.cs</strong>. Then replace the empty <em>OrderInformation</em> class with the following class definitions:</p>
+<p>Right-click the "OrderView" project and use the <strong>Add -&gt; New Folder</strong> command to add a folder named "Models" to the root of the project. Right-click the "Models" folder and use the <strong>Add -&gt; Class...</strong> command to add a class file named <strong>OrderInformation.cs</strong>. Then replace the empty <code>OrderInformation</code> class with the following class definitions:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">SalespersonInformation</span>
 {
     <span class="pl-k">public </span><span class="pl-k">string</span> <span class="pl-en">Label</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
@@ -1147,7 +1150,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Right-click the "Models" folder again and use the <strong>Add -&gt; Class...</strong> command to add a class file named <strong>MainViewModel.cs</strong>. Replace the contents of the file with the following statements, and observe that the <em>MainViewModel</em> class implements the <em>BindableBase</em> class created earlier:</p>
+<p>Right-click the "Models" folder again and use the <strong>Add -&gt; Class...</strong> command to add a class file named <strong>MainViewModel.cs</strong>. Replace the contents of the file with the following statements, and observe that the <code>MainViewModel</code> class implements the <code>BindableBase</code> class created earlier:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> <span class="pl-en">System</span>;
 <span class="pl-k">using</span> <span class="pl-en">System.Collections.Generic</span>;
 <span class="pl-k">using</span> <span class="pl-en">System.Collections.ObjectModel</span>;
@@ -1223,11 +1226,8 @@ vertical-align:1px;
         <span class="pl-k">public</span> <span class="pl-k">async</span> <span class="pl-k">void</span> <span class="pl-en">LoadOrdersAsync</span>(<span class="pl-k">string</span> <span class="pl-smi">filter</span>)
         {
             <span class="pl-c1">this</span>.IsLoading = <span class="pl-c1">true</span>;
-
             <span class="pl-k">await</span> Helpers.OrderHelper.SetUserAsync(<span class="pl-c1">this</span>.SelectedSalesperson.UserName);
-
             <span class="pl-c1">this</span>.CurrentOrders.Clear();
-
             <span class="pl-k">var</span> <span class="pl-en">orders </span>= <span class="pl-k">await</span> Helpers.OrderHelper.GetOrdersAsync(filter);
 
             <span class="pl-k">foreach</span> (var order <span class="pl-k">in</span> orders)
@@ -1241,11 +1241,8 @@ vertical-align:1px;
         <span class="pl-k">public</span> <span class="pl-k">async</span> <span class="pl-k">void</span> <span class="pl-en">LoadOrdersAsync</span>()
         {
             <span class="pl-c1">this</span>.IsLoading = <span class="pl-c1">true</span>;
-
             <span class="pl-k">await</span> Helpers.OrderHelper.SetUserAsync(<span class="pl-c1">this</span>.SelectedSalesperson.UserName);
-
             <span class="pl-c1">this</span>.CurrentOrders.Clear();
-
             <span class="pl-k">var</span> <span class="pl-en">orders </span>= <span class="pl-k">await</span> Helpers.OrderHelper.GetOrdersAsync();
 
             <span class="pl-k">foreach</span> (var order <span class="pl-k">in</span> orders)
@@ -1438,7 +1435,7 @@ vertical-align:1px;
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> <span class="pl-en">OrderView.Models</span>;</pre></div>
 </li>
 <li>
-<p>Still in <strong>MainPage.xaml.cs</strong>, replace everything inside the <em>MainPage</em> class with the following code:</p>
+<p>Still in <strong>MainPage.xaml.cs</strong>, replace everything inside the <code>MainPage</code> class with the following code:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-en">MainViewModel</span> <span class="pl-en">ViewModel</span> = <span class="pl-k">new</span> <span class="pl-en">MainViewModel</span>();
 
 <span class="pl-k">public</span> MainPage()
@@ -1570,7 +1567,7 @@ vertical-align:1px;
 </ul>
 <p>There is <em>much</em> more to learn about Azure SQL Database than one lab can cover. For example, you can easily <a href="https://docs.microsoft.com/azure/sql-database/sql-database-geo-replication-overview">configure geo-replication</a> to safeguard your data by establishing up to four readable secondary databases in different data centers, and you can take advantage of <a href="https://docs.microsoft.com/azure/sql-database/sql-database-security-overview">built-in auditing and threat protection</a> and <a href="https://msdn.microsoft.com/library/dn948096.aspx">Transparent Data Encryption</a> to maximize the security of your data.  Whether the goal is to store data for a personal Web site or handle high-volume loads incurred by enterprise back ends and mobile apps, Azure SQL Database has a solution to fit every need.</p>
 <hr>
-<p>Copyright 2016 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.</p>
+<p>Copyright 2017 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.</p>
 </body>
 </html>
 <!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
