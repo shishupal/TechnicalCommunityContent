@@ -469,18 +469,18 @@ vertical-align:1px;
 </head>
 <body>
 <p><a name="HOLTitle"></a></p>
-<h1>Building Smart Apps with Azure Machine Learning</h1>
+<h1>Building Smart Apps with Azure Machine Learning Studio</h1>
 <hr>
 <p><a name="Overview"></a></p>
 <h2>Overview</h2>
 <p>Machine learning, which facilitates predictive analytics using large volumes of data by employing algorithms that iteratively learn from that data, is one of the fastest growing areas of computer science. Its uses range from credit-card fraud detection and self-driving cars to optical character recognition (OCR) and online shopping recommendations. It makes us smarter by making computers smarter. And its usefulness will only increase as more and more data becomes available and the desire to perform predictive analysis from that data grows, too.</p>
-<p><a href="https://azure.microsoft.com/en-us/services/machine-learning/">Azure Machine Learning</a> is a cloud-based predictive-analytics service that offers a streamlined experience for data scientists of all skill levels. It's accompanied by the Azure Machine Learning Studio (ML Studio), which is a browser-based tool that provides an easy to use, drag-and-drop interface for building machine-learning models. It comes with a library of time-saving experiments and features best-in-class algorithms developed and tested in the real world by Microsoft businesses such as Bing. And its built-in support for <a href="https://www.r-project.org/">R</a> and <a href="https://www.python.org/">Python</a> means you can build custom scripts  to customize your model. Once you've built and trained your model in the ML Studio, you can easily expose it as a Web service that is consumable from a variety of programming languages, or share it with the community by placing it in the <a href="https://gallery.cortanaintelligence.com/">Cortana Intelligence Gallery</a>.</p>
-<p>In this lab, you will use Azure Machine Learning to build, train, and score a model that recognizes hand-written numeric digits. You will use a real OCR data set published for academic research. After deploying the model as a Web service, you will write an <a href="http://electron.atom.io/">Electron</a> client for it that lets you sketch digits on the screen and then consult Azure Machine Learning to see if it can identify the digits you sketched. You'll learn how to build and train a model, as well as how to write code that leverages the model.</p>
+<p><a href="https://azure.microsoft.com/en-us/services/machine-learning/">Azure Machine Learning Studio</a> is a cloud-based predictive-analytics service that offers a streamlined experience for data scientists of all skill levels. It features an easy to use, drag-and-drop interface for building machine-learning models. It comes with a library of time-saving experiments and features best-in-class algorithms developed and tested in the real world by Microsoft businesses such as Bing. And its built-in support for <a href="https://www.r-project.org/">R</a> and <a href="https://www.python.org/">Python</a> means you can build custom scripts  to customize your model. Once you've built and trained your model, you can easily expose it as a Web service that is consumable from a variety of programming languages, or share it with the community by placing it in the <a href="https://gallery.cortanaintelligence.com/">Cortana Intelligence Gallery</a>.</p>
+<p>In this lab, you will use Azure Machine Learning Studio to build, train, and score a model that recognizes hand-written numeric digits. You will use a real OCR data set published for academic research. After deploying the model as a Web service, you will write an <a href="http://electron.atom.io/">Electron</a> client for it that lets you sketch digits on the screen and then consult Azure Machine Learning to see if it can identify the digits you sketched. You will learn how to build and train a model, as well as how to write code that leverages the model.</p>
 <p><a name="Objectives"></a></p>
 <h3>Objectives</h3>
 <p>In this hands-on lab, you will learn how to:</p>
 <ul>
-<li>Build, train, and score a model using the Azure Machine Learning Studio</li>
+<li>Build, train, and score a model using Azure Machine Learning Studio</li>
 <li>Deploy your model as a Web service so it can be accessed from code or scripts</li>
 <li>Call an ML Web service from the apps that you write</li>
 </ul>
@@ -806,13 +806,13 @@ vertical-align:1px;
 </li>
 <li>
 <p>Execute the following command to verify that you have Node.js version 4 or higher installed. (If Node is installed, you will see the version number.) If Node is not installed or the version is less than 4, go to <a href="https://nodejs.org">https://nodejs.org</a> and install the latest stable version.</p>
- <pre> node --version
- </pre>
+<pre><code>node --version
+</code></pre>
 </li>
 <li>
 <p>Use the following command to create a new Node.js project.</p>
- <pre> npm init -y
- </pre>
+<pre><code>npm init -y
+</code></pre>
 <p>This will create an empty <strong>package.json</strong> file in the current directory.</p>
 <blockquote>
 <p>Node.js uses a package manager, called <strong>npm</strong>, to add additional components to Node.js applications. These additional components are dependencies of your application and are defined in the <strong>package.json</strong> file. Some dependencies are just needed when building the application, but others are required to actually run it. You will use several dependencies in your Electron application.</p>
@@ -820,8 +820,8 @@ vertical-align:1px;
 </li>
 <li>
 <p>In the Command Prompt or terminal window, execute the following command (note the space and the period at the end of the command) to start Visual Studio Code in the current directory:</p>
- <pre> code .
- </pre>
+<pre><code>code .
+</code></pre>
 </li>
 <li>
 <p>In Visual Studio Code, select the <strong>Explorer</strong> command from the <strong>View</strong> menu to make sure the Explorer panel is displayed. Then click <strong>Package.json</strong> to open the file for editing.</p>
@@ -839,19 +839,19 @@ vertical-align:1px;
     <span class="pl-s"><span class="pl-pds">"</span>@angular/http<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2.0.0<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>@angular/platform-browser<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2.0.0<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>@angular/platform-browser-dynamic<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2.0.0<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>@types/core-js<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^0.9.34<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>@types/jasmine<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^2.2.34<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>@types/node<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^6.0.41<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>core-js<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^2.4.1<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>reflect-metadata<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^0.1.3<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>@types/core-js<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>0.9.34<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>@types/jasmine<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2.2.34<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>@types/node<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>6.0.41<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>core-js<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2.4.1<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>reflect-metadata<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>0.1.3<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>rxjs<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>5.0.0-beta.12<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>systemjs<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>0.19.27<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>zone.js<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^0.6.23<span class="pl-pds">"</span></span>
+    <span class="pl-s"><span class="pl-pds">"</span>zone.js<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>0.6.23<span class="pl-pds">"</span></span>
   },
   <span class="pl-s"><span class="pl-pds">"</span>devDependencies<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
-    <span class="pl-s"><span class="pl-pds">"</span>electron<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^1.4.0<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>npm-run-all<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^3.1.0<span class="pl-pds">"</span></span>,
-    <span class="pl-s"><span class="pl-pds">"</span>typescript<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>^2.0.3<span class="pl-pds">"</span></span>
+    <span class="pl-s"><span class="pl-pds">"</span>electron<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>1.4.0<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>npm-run-all<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>3.1.0<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>typescript<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2.0.3<span class="pl-pds">"</span></span>
   },
   <span class="pl-k">...</span>
 }</pre></div>
@@ -895,8 +895,8 @@ vertical-align:1px;
 </li>
 <li>
 <p>Return to the Command Prompt or terminal window and execute the following command to install the dependencies that you defined:</p>
- <pre> npm install
- </pre>
+<pre><code>npm install
+</code></pre>
 </li>
 <li>
 <p>Now it is time to write the application itself. As a first step, use Visual Studio Code to create a file named <strong>index.html</strong> in the project directory and insert the following statements:</p>
@@ -907,17 +907,17 @@ vertical-align:1px;
     &lt;<span class="pl-ent">meta</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>viewport<span class="pl-pds">"</span></span> <span class="pl-e">content</span>=<span class="pl-s"><span class="pl-pds">"</span>width=device-width, initial-scale=1<span class="pl-pds">"</span></span>&gt;
     &lt;<span class="pl-ent">title</span>&gt;DX Machine Learning Lab&lt;/<span class="pl-ent">title</span>&gt;
     &lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>main.css<span class="pl-pds">"</span></span>&gt;
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/core-js/client/shim.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/zone.js/dist/zone.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/reflect-metadata/Reflect.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/systemjs/dist/system.src.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>system.config.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1">    &lt;<span class="pl-ent">script</span>&gt;</span>
+    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/core-js/client/shim.min.js<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/zone.js/dist/zone.js<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/reflect-metadata/Reflect.js<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>node_modules/systemjs/dist/system.src.js<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+    &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>system.config.js<span class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+    &lt;<span class="pl-ent">script</span>&gt;<span class="pl-s1"></span>
 <span class="pl-s1">        <span class="pl-smi">System</span>.<span class="pl-en">import</span>(<span class="pl-s"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>).<span class="pl-en">catch</span>(<span class="pl-k">function</span>(<span class="pl-smi">err</span>){ <span class="pl-en">console</span>.<span class="pl-c1">error</span>(err); });</span>
-<span class="pl-s1">    &lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    </span><span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
 &lt;/<span class="pl-ent">head</span>&gt;
 &lt;<span class="pl-ent">body</span>&gt;
-&lt;<span class="pl-ent">my</span><span class="pl-e">-app</span>&gt;Loading ...&lt;/<span class="pl-ent">my</span><span class="pl-e">-app</span>&gt;
+&lt;<span class="pl-ent">my-app</span>&gt;Loading ...&lt;/<span class="pl-ent">my-app</span>&gt;
 &lt;/<span class="pl-ent">body</span>&gt;
 &lt;/<span class="pl-ent">html</span>&gt;</pre></div>
 </li>
@@ -1009,7 +1009,7 @@ vertical-align:1px;
     });
 
     <span class="pl-c"><span class="pl-c">//</span>win.webContents.openDevTools();</span>
-}</pre></div>
+<span class="pl-c"></span>}</pre></div>
 <blockquote>
 <p>You can uncomment the call to <em>win.webContents.openDevTools()</em> if you want the <a href="https://developer.chrome.com/devtools">Chrome Developer Tools</a> to be opened automatically when you start the application.  This is helpful for debugging if things go wrong with your application.</p>
 </blockquote>
@@ -1155,7 +1155,7 @@ vertical-align:1px;
         <span class="pl-c1">this</span>.<span class="pl-smi">result</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;
         <span class="pl-c1">this</span>.<span class="pl-smi">requestError</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;
         <span class="pl-c1">this</span>.<span class="pl-smi">http</span>
-            .<span class="pl-en">post</span>(<span class="pl-c1">url</span>, <span class="pl-smi">body</span>, <span class="pl-smi">options</span>)
+            .<span class="pl-en">post</span>(<span class="pl-smi">url</span>, <span class="pl-smi">body</span>, <span class="pl-smi">options</span>)
             .<span class="pl-en">map</span>(<span class="pl-v">res</span> <span class="pl-k">=&gt;</span> <span class="pl-smi">res</span>.<span class="pl-en">json</span>())
             .<span class="pl-en">subscribe</span>({
                 <span class="pl-en">next</span>: (<span class="pl-v">value</span>) <span class="pl-k">=&gt;</span> {
@@ -1242,7 +1242,7 @@ vertical-align:1px;
 </ul>
 <p>There's much more than you can do with Azure Machine Learning, but this is a start. Feel free to experiment with it on your own and explore the exciting world of predictive analysis with a tool that is not only productive, but fun!</p>
 <hr>
-<p>Copyright 2016 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.</p>
+<p>Copyright 2017 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.</p>
 </body>
 </html>
 <!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

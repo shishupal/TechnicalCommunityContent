@@ -1,5 +1,5 @@
 <a name="HOLTitle"></a>
-# Building Smart Apps with Azure Machine Learning #
+# Building Smart Apps with Azure Machine Learning Studio #
 
 ---
 
@@ -8,16 +8,16 @@
 
 Machine learning, which facilitates predictive analytics using large volumes of data by employing algorithms that iteratively learn from that data, is one of the fastest growing areas of computer science. Its uses range from credit-card fraud detection and self-driving cars to optical character recognition (OCR) and online shopping recommendations. It makes us smarter by making computers smarter. And its usefulness will only increase as more and more data becomes available and the desire to perform predictive analysis from that data grows, too.
 
-[Azure Machine Learning](https://azure.microsoft.com/en-us/services/machine-learning/) is a cloud-based predictive-analytics service that offers a streamlined experience for data scientists of all skill levels. It's accompanied by the Azure Machine Learning Studio (ML Studio), which is a browser-based tool that provides an easy to use, drag-and-drop interface for building machine-learning models. It comes with a library of time-saving experiments and features best-in-class algorithms developed and tested in the real world by Microsoft businesses such as Bing. And its built-in support for [R](https://www.r-project.org/) and [Python](https://www.python.org/) means you can build custom scripts  to customize your model. Once you've built and trained your model in the ML Studio, you can easily expose it as a Web service that is consumable from a variety of programming languages, or share it with the community by placing it in the [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/).
+[Azure Machine Learning Studio](https://azure.microsoft.com/en-us/services/machine-learning/) is a cloud-based predictive-analytics service that offers a streamlined experience for data scientists of all skill levels. It features an easy to use, drag-and-drop interface for building machine-learning models. It comes with a library of time-saving experiments and features best-in-class algorithms developed and tested in the real world by Microsoft businesses such as Bing. And its built-in support for [R](https://www.r-project.org/) and [Python](https://www.python.org/) means you can build custom scripts  to customize your model. Once you've built and trained your model, you can easily expose it as a Web service that is consumable from a variety of programming languages, or share it with the community by placing it in the [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/).
 
-In this lab, you will use Azure Machine Learning to build, train, and score a model that recognizes hand-written numeric digits. You will use a real OCR data set published for academic research. After deploying the model as a Web service, you will write an [Electron](http://electron.atom.io/) client for it that lets you sketch digits on the screen and then consult Azure Machine Learning to see if it can identify the digits you sketched. You'll learn how to build and train a model, as well as how to write code that leverages the model.
+In this lab, you will use Azure Machine Learning Studio to build, train, and score a model that recognizes hand-written numeric digits. You will use a real OCR data set published for academic research. After deploying the model as a Web service, you will write an [Electron](http://electron.atom.io/) client for it that lets you sketch digits on the screen and then consult Azure Machine Learning to see if it can identify the digits you sketched. You will learn how to build and train a model, as well as how to write code that leverages the model.
 
 <a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
 
-- Build, train, and score a model using the Azure Machine Learning Studio
+- Build, train, and score a model using Azure Machine Learning Studio
 - Deploy your model as a Web service so it can be accessed from code or scripts
 - Call an ML Web service from the apps that you write
 
@@ -377,15 +377,15 @@ In this exercise, you will write a cross-platform client app using [Node.js](htt
 
 1. Execute the following command to verify that you have Node.js version 4 or higher installed. (If Node is installed, you will see the version number.) If Node is not installed or the version is less than 4, go to https://nodejs.org and install the latest stable version.
  
-    <pre>
+    ```
     node --version
-    </pre>
+    ```
 
 1. Use the following command to create a new Node.js project.
  
-    <pre>
+    ```
     npm init -y
-    </pre>
+    ```
 
     This will create an empty **package.json** file in the current directory.
 
@@ -393,9 +393,9 @@ In this exercise, you will write a cross-platform client app using [Node.js](htt
        
 1. In the Command Prompt or terminal window, execute the following command (note the space and the period at the end of the command) to start Visual Studio Code in the current directory:
 
-	<pre>
+    ```
 	code .
-	</pre>
+    ```
 
 1. In Visual Studio Code, select the **Explorer** command from the **View** menu to make sure the Explorer panel is displayed. Then click **Package.json** to open the file for editing.
 
@@ -407,28 +407,28 @@ In this exercise, you will write a cross-platform client app using [Node.js](htt
                
     ```javascript
     {
-      "dependencies": {
-        "@angular/common": "2.0.0",
-        "@angular/compiler": "2.0.0",
-        "@angular/core": "2.0.0",
-        "@angular/forms": "2.0.0",
-        "@angular/http": "2.0.0",
-        "@angular/platform-browser": "2.0.0",
-        "@angular/platform-browser-dynamic": "2.0.0",
-        "@types/core-js": "^0.9.34",
-        "@types/jasmine": "^2.2.34",
-        "@types/node": "^6.0.41",
-        "core-js": "^2.4.1",
-        "reflect-metadata": "^0.1.3",
-        "rxjs": "5.0.0-beta.12",
-        "systemjs": "0.19.27",
-        "zone.js": "^0.6.23"
-      },
-      "devDependencies": {
-        "electron": "^1.4.0",
-        "npm-run-all": "^3.1.0",
-        "typescript": "^2.0.3"
-      },
+	  "dependencies": {
+	    "@angular/common": "2.0.0",
+	    "@angular/compiler": "2.0.0",
+	    "@angular/core": "2.0.0",
+	    "@angular/forms": "2.0.0",
+	    "@angular/http": "2.0.0",
+	    "@angular/platform-browser": "2.0.0",
+	    "@angular/platform-browser-dynamic": "2.0.0",
+	    "@types/core-js": "0.9.34",
+	    "@types/jasmine": "2.2.34",
+	    "@types/node": "6.0.41",
+	    "core-js": "2.4.1",
+	    "reflect-metadata": "0.1.3",
+	    "rxjs": "5.0.0-beta.12",
+	    "systemjs": "0.19.27",
+	    "zone.js": "0.6.23"
+	  },
+	  "devDependencies": {
+	    "electron": "1.4.0",
+	    "npm-run-all": "3.1.0",
+	    "typescript": "2.0.3"
+	  },
       ...
     }
     ```
@@ -477,9 +477,9 @@ In this exercise, you will write a cross-platform client app using [Node.js](htt
 
 1. Return to the Command Prompt or terminal window and execute the following command to install the dependencies that you defined:
  
-    <pre>
+    ```
     npm install
-    </pre>
+    ```
 
 1. Now it is time to write the application itself. As a first step, use Visual Studio Code to create a file named **index.html** in the project directory and insert the following statements:
 
@@ -846,4 +846,4 @@ There's much more than you can do with Azure Machine Learning, but this is a sta
 
 ----
 
-Copyright 2016 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at https://opensource.org/licenses/MIT.
+Copyright 2017 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at https://opensource.org/licenses/MIT.
