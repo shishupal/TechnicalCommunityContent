@@ -474,8 +474,8 @@ vertical-align:1px;
 <p><a name="Overview"></a></p>
 <h2>Overview</h2>
 <p>Whether it targets businesses, consumers, or both, an app is only as meaningful as the data that drives it. With consumer and organizational requirements changing constantly, as well as the need to store, index, and optimize data and structures as they change, the need for a more open, flexible, and schema-agnostic data solution has been become essential. Azure Cosmos DB addresses this need and more and makes it easy to adjust and adapt data models on the fly, as business logic and application scenarios change.</p>
-<p><a href="https://azure.microsoft.com/en-us/services/cosmos-db/">Azure Cosmos DB</a> is Microsoft's globally distributed, multi-model database service for mission-critical applications. It supports turn-key global distribution, elastic scaling of throughput and storage worldwide, single-digit millisecond latencies at the 99th percentile, five well-defined consistency levels, and guaranteed high availability, all backed by industry-leading SLAs. Azure Cosmos DB automatically indexes data without requiring you to deal with schema and index management. It is multi-model and supports document, key-value, graph, and columnar data models.</p>
-<p><a href="https://azure.microsoft.com/en-us/services/documentdb/">DocumentDB</a> is a feature of Cosmos DB implementing a fully managed NoSQL database service built for fast performance, high availability, elastic scaling, and ease of development. As a schema-free NoSQL database, DocumentDB provides rich and familiar SQL query capabilities over JSON data, ensuring that 99% of your reads are served under 10 milliseconds and 99% of your writes are served under 15 milliseconds. These unique benefits make DocumentDB a great fit for Web, mobile, gaming, IoT, and many other applications that need seamless scale and global replication.</p>
+<p><a href="https://azure.microsoft.com/services/cosmos-db/">Azure Cosmos DB</a> is Microsoft's globally distributed, multi-model database service for mission-critical applications. It supports turn-key global distribution, elastic scaling of throughput and storage worldwide, single-digit millisecond latencies at the 99th percentile, five well-defined consistency levels, and guaranteed high availability, all backed by industry-leading SLAs. Azure Cosmos DB automatically indexes data without requiring you to deal with schema and index management. It is multi-model and supports document, key-value, graph, and columnar data models.</p>
+<p><a href="https://docs.microsoft.com/azure/cosmos-db/documentdb-introduction">DocumentDB</a> is a feature of Cosmos DB implementing a fully managed NoSQL database service built for fast performance, high availability, elastic scaling, and ease of development. As a schema-free NoSQL database, DocumentDB provides rich and familiar SQL query capabilities over JSON data, ensuring that 99% of your reads are served under 10 milliseconds and 99% of your writes are served under 15 milliseconds. These unique benefits make DocumentDB a great fit for Web, mobile, gaming, IoT, and many other applications that need seamless scale and global replication.</p>
 <p>In this lab, you will deploy a DocumentDB database under Cosmos DB to store customer and product order information for the fictitious company <em>Adventure Works</em>, and you will connect it to Azure Search to index the data and implement auto-suggest. You will also write a Web app that uses the database and demonstrates how easily applications can consume data from DocumentDB.</p>
 <p><a name="Objectives"></a></p>
 <h3>Objectives</h3>
@@ -492,7 +492,7 @@ vertical-align:1px;
 <p>The following are required to complete this hands-on lab:</p>
 <ul>
 <li>An active Microsoft Azure subscription. If you don't have one, <a href="https://azure.microsoft.com/en-us/free/">sign up for a free trial</a>.</li>
-<li><a href="https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx">Visual Studio 2015 Community edition</a> or higher</li>
+<li><a href="https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx">Visual Studio 2017 Community edition</a> or higher with the "ASP.NET and web development" and "Azure development" workloads installed</li>
 </ul>
 <hr>
 <p><a name="Exercises"></a></p>
@@ -503,7 +503,7 @@ vertical-align:1px;
 <li><a href="#Exercise2">Exercise 2: Create a DocumentDB database and collections</a></li>
 <li><a href="#Exercise3">Exercise 3: Populate collections with documents</a></li>
 <li><a href="#Exercise4">Exercise 4: Connect Azure Search</a></li>
-<li><a href="#Exercise5">Exercise 5: Build an Azure Web App</a></li>
+<li><a href="#Exercise5">Exercise 5: Build a Web app</a></li>
 <li><a href="#Exercise6">Exercise 6: Add auto-suggest</a></li>
 </ul>
 <p>Estimated time to complete this lab: <strong>60</strong> minutes.</p>
@@ -551,7 +551,7 @@ vertical-align:1px;
 <p><em>Adding a collection</em></p>
 </li>
 <li>
-<p>Enter "Customers" (without quotation marks) as the <strong>Collection Id</strong> and select <strong>Fixed (10 GB)</strong> as the <strong>STORAGE CAPACITY</strong>. Select <strong>Create New</strong> under <strong>DATABASE</strong> and specify "CustomerOrders" as the database name. Then click the <strong>OK</strong> button.</p>
+<p>Enter "Customers" (without quotation marks) as the <strong>Collection Id</strong> and make sure <strong>STORAGE CAPACITY</strong> is set to <strong>Fixed (10 GB)</strong>. Select <strong>Create New</strong> under <strong>DATABASE</strong> and specify "CustomerOrders" as the database name. Then click the <strong>OK</strong> button.</p>
 <p><a href="Images/create-collection-and-database.png" target="_blank"><img src="Images/create-collection-and-database.png" alt="Creating a Customers collection" style="max-width:100%;"></a></p>
 <p><em>Creating a Customers collection</em></p>
 </li>
@@ -603,9 +603,9 @@ vertical-align:1px;
 <p>Repeat this process to upload all of the files in this lab's "Resources/Products" folder to the Products collection.</p>
 </li>
 <li>
-<p>The next step is to validate the document uploads by querying one or more of the collections. Click <strong>Query Explorer</strong> in the menu on the left. Select <strong>Orders</strong> in the drop-down list of collections, and then click the <strong>Run Query</strong>.</p>
+<p>The next step is to validate the document uploads by querying one or more of the collections. Click <strong>Query Explorer</strong> in the menu on the left. Select <strong>Orders</strong> in the drop-down list of collections, and then click the <strong>Run Query</strong> button.</p>
 <blockquote>
-<p>Although you won't use DocumentDB's rich query capabilities directly in this lab, be aware that DocumentDB supports a variation of the SQL query language for extracting information from JSON data. For more information, and plenty of examples, see <a href="https://docs.microsoft.com/en-us/azure/documentdb/documentdb-sql-query">https://docs.microsoft.com/en-us/azure/documentdb/documentdb-sql-query</a>.</p>
+<p>Although you won't use DocumentDB's rich query capabilities directly in this lab, be aware that DocumentDB supports a variation of the SQL query language for extracting information from JSON data. For more information, and plenty of examples, see <a href="https://docs.microsoft.com/azure/documentdb/documentdb-sql-query">https://docs.microsoft.com/azure/documentdb/documentdb-sql-query</a>.</p>
 </blockquote>
 <p><a href="Images/open-query-explorer.png" target="_blank"><img src="Images/open-query-explorer.png" alt="Querying the Orders collection" style="max-width:100%;"></a></p>
 <p><em>Querying the Orders collection</em></p>
@@ -667,26 +667,18 @@ vertical-align:1px;
 </ol>
 <p>With the DocumentDB database deployed and an Azure Search service connected to it, it is time to put both to work by building a Web app that uses them to display customer, product, and order information.</p>
 <p><a name="Exercise5"></a></p>
-<h2>Exercise 5: Build an Azure Web App</h2>
-<p><a href="https://azure.microsoft.com/en-us/documentation/articles/app-service-web-overview/">Azure Web Apps</a> allow you to quickly and easily deploy Web sites built with tools and languages you're familiar with. In this exercise, you will build an ASP.NET MVC Web app with Visual Studio and configure it so that it can be deployed to the cloud as an Azure Web App. The app will connect to the DocumentDB database deployed and populated with data in previous exercises and provide a browser-based front-end for viewing and searching the data.</p>
+<h2>Exercise 5: Build a Web app</h2>
+<p>In this exercise, you will build an ASP.NET MVC Web app with Visual Studio. The app will connect to the DocumentDB database you deployed and populated with data in previous exercises and provide a browser-based front-end for viewing and searching the data.</p>
 <ol>
 <li>
-<p>Start Visual Studio 2015 and use the <strong>File -&gt; New -&gt; Project</strong> command to create a new Visual C# ASP.NET Web Application project named "AdventureDoc" (short for "Adventure Works Documents").</p>
+<p>Start Visual Studio and use the <strong>File -&gt; New -&gt; Project</strong> command to create a new Visual C# ASP.NET Web Application project named "AdventureDocs" (short for "Adventure Works Documents").</p>
 <p><a href="Images/vs-create-new-web-app.png" target="_blank"><img src="Images/vs-create-new-web-app.png" alt="Creating a new Web Application project" style="max-width:100%;"></a></p>
 <p><em>Creating a new Web Application project</em></p>
 </li>
 <li>
-<p>In the "New ASP.NET Web Application" dialog, select the <strong>MVC</strong> template. Then click the <strong>Change Authentication</strong> button and select <strong>No Authentication</strong>. (This simplifies the app by omitting authentication infrastructure.) Next, make sure the <strong>Host in the cloud</strong> box is checked and that <strong>App Service</strong> is selected in the drop-down list below the check box. Finally, click <strong>OK</strong>.</p>
+<p>In the ensuing dialog, make sure <strong>MVC</strong> is selected. Then click <strong>OK</strong>.</p>
 <p><a href="Images/vs-configure-web-app.png" target="_blank"><img src="Images/vs-configure-web-app.png" alt="Configuring the project" style="max-width:100%;"></a></p>
 <p><em>Configuring the project</em></p>
-</li>
-<li>
-<p>In the "Create App Service" dialog, make sure <strong>DocumentDBResourceGroup</strong> is selected under <strong>Resource Group</strong>. (This will add the Azure Web App to the same resource group as the DocumentDB account and the Azure Search service, which is handy because deleting the resource group will delete all three.) Then click the <strong>New</strong> button next to <strong>App Service Plan</strong> and select the location nearest you for hosting the Web App, and <strong>Free</strong> as the <strong>Size.</strong> Click <strong>OK</strong> to dismiss the "Configure App Service Plan" dialog. Then click <strong>Create</strong> at the bottom of the "Create App Service" dialog.</p>
-<p><a href="Images/vs-create-app-service.png" target="_blank"><img src="Images/vs-create-app-service.png" alt="Creating an App Service" style="max-width:100%;"></a></p>
-<p><em>Creating an App Service</em></p>
-</li>
-<li>
-<p>Take a moment to review the project structure in the Solution Explorer window. Among other things, there's a folder named "Controllers" that holds the project's MVC controllers, and a folder named "Views" that holds the project's views. You will be working with assets in these folders and others as you implement the application.</p>
 </li>
 <li>
 <p>Use Visual Studio's <strong>Debug -&gt; Start Without Debugging</strong> command (or simply press <strong>Ctrl+F5</strong>) to launch the application in your browser. Here's how the application looks in its present state:</p>
@@ -694,19 +686,9 @@ vertical-align:1px;
 <p><em>The initial application</em></p>
 </li>
 <li>
-<p>Close the browser and return to Visual Studio. In the Solution Explorer window, right-click the <strong>AdventureDocs</strong> project and select <strong>Manage NuGet Packages...</strong>.</p>
-<p><a href="Images/vs-select-manage-packages.png" target="_blank"><img src="Images/vs-select-manage-packages.png" alt="Managing NuGet packages for the project" style="max-width:100%;"></a></p>
-<p><em>Managing NuGet packages for the project</em></p>
-</li>
-<li>
-<p>Click <strong>Browse</strong>. Then type "documentdb" (without quotation marks) into the search box. Click <strong>Microsoft.Azure.DocumentDB</strong> to select the Azure DocumentDB .NET Client Library from NuGet. Finally, click <strong>Install</strong> to install the latest stable version of the package. This package contains APIs for accessing Azure DocumentDB from .NET applications. Click <strong>OK</strong> if you're prompted to review changes, and <strong>I Accept</strong> if prompted to accept licenses for downloaded packages.</p>
+<p>Close the browser and return to Visual Studio. In the Solution Explorer window, right-click the <strong>AdventureDocs</strong> project and select <strong>Manage NuGet Packages...</strong>. Click <strong>Browse</strong>. Then type "documentdb" (without quotation marks) into the search box. Click <strong>Microsoft.Azure.DocumentDB</strong> to select the Azure DocumentDB .NET Client Library from NuGet. Finally, click <strong>Install</strong> to install the latest stable version of the package. This package contains APIs for accessing Azure DocumentDB from .NET applications. OK any changes and accept any licenses presented to you.</p>
 <p><a href="Images/vs-add-documentdb-package.png" target="_blank"><img src="Images/vs-add-documentdb-package.png" alt="Installing Microsoft.Azure.DocumentDB" style="max-width:100%;"></a></p>
 <p><em>Installing Microsoft.Azure.DocumentDB</em></p>
-</li>
-<li>
-<p>Repeat this process to add the NuGet package named <strong>Microsoft.WindowsAzure.ConfigurationManager</strong> to the project. This package contains APIs for loading configuration settings. Once more, OK any changes and accept any licenses presented to you.</p>
-<p><a href="Images/vs-add-configuration-package.png" target="_blank"><img src="Images/vs-add-configuration-package.png" alt="Installing Microsoft.WindowsAzure.ConfigurationManager" style="max-width:100%;"></a></p>
-<p><em>Installing Microsoft.WindowsAzure.ConfigurationManager</em></p>
 </li>
 <li>
 <p>Repeat this process to add the NuGet package named <strong>Microsoft.Azure.Search</strong> to the project. This package contains APIs for accessing Azure Search from .NET applications. Once more, OK any changes and accept any licenses presented to you.</p>
@@ -714,33 +696,31 @@ vertical-align:1px;
 <p><em>Installing Microsoft.Azure.Search</em></p>
 </li>
 <li>
-<p>Repeat this process to add the NuGet package named <strong>jQuery.UI.Combined</strong> to the project. This package contains APIs and file elements required by MVC 5 for jQuery user interface elements. Once more, OK any changes and accept any licenses presented to you.</p>
+<p>Repeat this process to add the NuGet package named <strong>jQuery.UI.Combined</strong> to the project. This package contains APIs for jQuery user-interface elements. Once more, OK any changes and accept any licenses presented to you.</p>
 <p><a href="Images/vs-add-jquery-package.png" target="_blank"><img src="Images/vs-add-jquery-package.png" alt="Installing jQuery.UI.Combined" style="max-width:100%;"></a></p>
 <p><em>Installing jQuery.UI.Combined</em></p>
 </li>
 <li>
-<p>In the Solution Explorer window, double-click <strong>Web.config</strong> to open it for editing.</p>
-<p><a href="Images/vs-open-web-config.png" target="_blank"><img src="Images/vs-open-web-config.png" alt="Opening Web.config" style="max-width:100%;"></a></p>
-<p><em>Opening Web.config</em></p>
+<p>Open <strong>Web.config</strong> and add the following statements to the <code>&lt;appSettings&gt;</code> section:</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>DocumentDBEndpointUrl<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>DOCUMENTDB_ENDPOINT<span class="pl-pds">"</span></span> /&gt;
+&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>DocumentDBKey<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>DOCUMENTDB_KEY<span class="pl-pds">"</span></span> /&gt;</pre></div>
 </li>
 <li>
-<p>Return to the Azure Portal and open the blade for the Cosmos DB account that you created in <a href="#Exercise1">Exercise 1</a>. Click <strong>Keys</strong>. Then click <strong>Read-only keys</strong>, and click the <strong>Copy</strong> button to the right of the <strong>URI</strong> box to copy the DocumentDB URI to the clipboard.</p>
+<p>Return to the Azure Portal and open the blade for the Cosmos DB account that you created in <a href="#Exercise1">Exercise 1</a>. Click <strong>Keys</strong>. Then click <strong>Read-only Keys</strong>, and click the <strong>Copy</strong> button to the right of the <strong>URI</strong> box to copy the DocumentDB URI to the clipboard.</p>
 <p><a href="Images/copy-documentdb-uri.png" target="_blank"><img src="Images/copy-documentdb-uri.png" alt="Copying the DocumentDB URI" style="max-width:100%;"></a></p>
 <p><em>Copying the DocumentDB URI</em></p>
 </li>
 <li>
-<p>Return to Visual Studio. In <strong>Web.config</strong>, add the following statement to the <code>&lt;appSettings&gt;</code> section, replacing <em>documentdb_endpoint</em> with the URI on the clipboard:</p>
-<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>DocumentDBEndpointUrl<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>documentdb_endpoint<span class="pl-pds">"</span></span> /&gt;</pre></div>
+<p>Return to Visual Studio. In <strong>Web.config</strong>, replace DOCUMENTDB_ENDPOINT with the URI on the clipboard.</p>
 </li>
 <li>
 <p>Return to the Azure Portal and click the <strong>Copy</strong> button to the right of <strong>PRIMARY READ-ONLY KEY</strong> to copy the access key the clipboard.</p>
 </li>
 <li>
-<p>Return to Visual Studio. In <strong>Web.config</strong>, add the following statement to the <code>&lt;appSettings&gt;</code> section, replacing <em>documentdb_key</em> with the access key on the clipboard:</p>
-<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>DocumentDBKey<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>documentdb_key<span class="pl-pds">"</span></span> /&gt;</pre></div>
+<p>Return to Visual Studio. In <strong>Web.config</strong>, replace DOCUMENTDB_KEY with the key on the clipboard.</p>
 </li>
 <li>
-<p>In the Solution Explorer window, find the file named <strong>_Layout.cshtml</strong> in the "Views/Shared" folder. Double-click it to open it. Then replace its contents with the following statements:</p>
+<p>Open <strong>_Layout.cshtml</strong> in the project's "Views/Shared" folder. Then replace the file's contents with the following statements:</p>
 <div class="highlight highlight-text-html-basic"><pre>&lt;!DOCTYPE html&gt;
 &lt;<span class="pl-ent">html</span>&gt;
 &lt;<span class="pl-ent">head</span>&gt;
@@ -786,16 +766,10 @@ vertical-align:1px;
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 &lt;/<span class="pl-ent">body</span>&gt;
-&lt;/<span class="pl-ent">html</span>&gt;
-</pre></div>
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
 </li>
 <li>
-<p>In Solution Explorer, right-click the "Models" folder and select <strong>Add -&gt; Class...</strong>. Then type "OrderInformation.cs" (without quotation marks) into the <strong>Name</strong> box and click <strong>OK</strong> to add the class to project.</p>
-<p><a href="Images/vs-add-class-to-models.png" target="_blank"><img src="Images/vs-add-class-to-models.png" alt="Adding a class to the &quot;Models&quot; folder" style="max-width:100%;"></a></p>
-<p><em>Adding a class to the "Models" folder</em></p>
-</li>
-<li>
-<p>Replace the empty <code>OrderInformation</code> class with the following class definitions, and note that you are making the classes public rather than private, as well as attributing it <code>Serializable</code>:</p>
+<p>Right-click the "Models" folder in Solution Explorer and use the <strong>Add -&gt; Class...</strong> command to add a class file named <strong>OrderInformation.cs</strong>. Then replace the empty <code>OrderInformation</code> class with the following class definitions:</p>
 <div class="highlight highlight-source-cs"><pre>[Serializable]
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">OrderInformation</span>
 {
@@ -898,6 +872,7 @@ vertical-align:1px;
 <span class="pl-k">using</span> <span class="pl-en">Newtonsoft.Json</span>;
 <span class="pl-k">using</span> <span class="pl-en">System.Threading.Tasks</span>;
 <span class="pl-k">using</span> <span class="pl-en">AdventureDocs.Models</span>;
+<span class="pl-k">using</span> <span class="pl-en">System.Configuration</span>;
 
 <span class="pl-k">namespace</span> <span class="pl-en">AdventureDocs.Helpers</span>
 {
@@ -905,8 +880,8 @@ vertical-align:1px;
     {
         <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-en">DocumentClient</span> <span class="pl-en">GetDocumentClient</span>()
         {
-            <span class="pl-k">string</span> <span class="pl-en">endpointUrl</span> = Microsoft.Azure.CloudConfigurationManager.GetSetting(<span class="pl-s"><span class="pl-pds">"</span>DocumentDBEndpointUrl<span class="pl-pds">"</span></span>);
-            <span class="pl-k">string</span> <span class="pl-en">primaryKey</span> = Microsoft.Azure.CloudConfigurationManager.GetSetting(<span class="pl-s"><span class="pl-pds">"</span>DocumentDBKey<span class="pl-pds">"</span></span>);
+            <span class="pl-k">string</span> <span class="pl-en">endpointUrl</span> = ConfigurationManager.AppSettings[<span class="pl-s"><span class="pl-pds">"</span>DocumentDBEndpointUrl<span class="pl-pds">"</span></span>];
+            <span class="pl-k">string</span> <span class="pl-en">primaryKey</span> = ConfigurationManager.AppSettings[<span class="pl-s"><span class="pl-pds">"</span>DocumentDBKey<span class="pl-pds">"</span></span>];
             <span class="pl-en">DocumentClient</span> <span class="pl-en">client</span> = <span class="pl-k">new</span> <span class="pl-en">DocumentClient</span>(<span class="pl-k">new</span> <span class="pl-en">Uri</span>(<span class="pl-en">endpointUrl</span>), primaryKey);
             <span class="pl-k">return</span> client;
         }
@@ -927,7 +902,7 @@ vertical-align:1px;
                     collections = (<span class="pl-k">from</span> feed <span class="pl-k">in</span> collFeed <span class="pl-k">select</span> feed.Id).ToList();
                 }
             }
-            <span class="pl-k">catch</span> (Exception ex)
+            <span class="pl-k">catch</span> (<span class="pl-en">Exception</span>)
             {
             }
 
@@ -1006,7 +981,7 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Open <strong>HomeController.cs</strong> in the project's "Controllers" folder. Add the following using statements to the top of the file:</p>
+<p>Open <strong>HomeController.cs</strong> in the project's "Controllers" folder. Add the following <code>using</code> statements to the top of the file:</p>
 <div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span> <span class="pl-en">System.Threading.Tasks</span>;
 <span class="pl-k">using</span> <span class="pl-en">AdventureDocs.Models</span>;</pre></div>
 </li>
@@ -1218,14 +1193,14 @@ vertical-align:1px;
 </li>
 <li>
 <p>The Orders listing displays the CompanyName and ShipRegion values from the orders returned in the search results. To view the entire order, click <strong>[view document]</strong> to the right of an order. The result is the JSON defining the order:</p>
-<p><a href="Images/vs-documentsearch-04.png" target="_blank"><img src="Images/vs-documentsearch-04.png" alt="Viewing an entire order" style="max-width:100%;"></a></p>
-<p><em>Viewing an entire order</em></p>
+<p><a href="Images/vs-documentsearch-04.png" target="_blank"><img src="Images/vs-documentsearch-04.png" alt="Viewing the JSON for an order" style="max-width:100%;"></a></p>
+<p><em>Viewing the JSON for an order</em></p>
 </li>
 </ol>
 <p>This is a great start, and it demonstrates how an ASP.NET MVC Web app can access data stored in the cloud in a DocumentDB database. But right now, the search UI is somewhat clumsy; you have to enter letters blindly, without any feedback to tell you whether there are any matching documents. Let's enhance the UI by adding auto-suggest.</p>
 <p><a name="Exercise6"></a></p>
 <h2>Exercise 6: Add auto-suggest</h2>
-<p>Azure Search enables super-fast retrieval of indexed values in the data stores is is connected to. In this exercise, you will leverage that speed to add an auto-suggest list to customer search to provide feedback to the user as he or she types.</p>
+<p>Azure Search enables super-fast retrieval of indexed values in the data stores it is connected to. In this exercise, you will leverage that speed to add an auto-suggest list to customer search to provide feedback to the user as he or she types.</p>
 <ol>
 <li>
 <p>Return to Visual Studio. Right-click the "Helpers" folder and use the <strong>Add -&gt; Class...</strong> command to add a file named <strong>SearchHelper.cs</strong> to the folder. Replace the contents of the file with the following statements:</p>
@@ -1237,6 +1212,7 @@ vertical-align:1px;
 <span class="pl-k">using</span> <span class="pl-en">System.Threading.Tasks</span>;
 <span class="pl-k">using</span> <span class="pl-en">System.Web</span>;
 <span class="pl-k">using</span> <span class="pl-en">AdventureDocs.Models</span>;
+<span class="pl-k">using</span> <span class="pl-en">System.Configuration</span>;
 
 <span class="pl-k">namespace</span> <span class="pl-en">AdventureDocs.Helpers</span>
 {
@@ -1246,8 +1222,8 @@ vertical-align:1px;
         {
             <span class="pl-en">List</span>&lt;<span class="pl-k">string</span>&gt; <span class="pl-en">suggestions</span> = <span class="pl-k">new</span> <span class="pl-en">List</span>&lt;<span class="pl-k">string</span>&gt;();
 
-            <span class="pl-k">string</span> <span class="pl-en">searchServiceName</span> = Microsoft.Azure.CloudConfigurationManager.GetSetting(<span class="pl-s"><span class="pl-pds">"</span>SearchServiceName<span class="pl-pds">"</span></span>);
-            <span class="pl-k">string</span> <span class="pl-en">searchServiceKey</span> = Microsoft.Azure.CloudConfigurationManager.GetSetting(<span class="pl-s"><span class="pl-pds">"</span>SearchServiceKey<span class="pl-pds">"</span></span>);
+            <span class="pl-k">string</span> <span class="pl-en">searchServiceName</span> = ConfigurationManager.AppSettings[<span class="pl-s"><span class="pl-pds">"</span>SearchServiceName<span class="pl-pds">"</span></span>];
+            <span class="pl-k">string</span> <span class="pl-en">searchServiceKey</span> = ConfigurationManager.AppSettings[<span class="pl-s"><span class="pl-pds">"</span>SearchServiceKey<span class="pl-pds">"</span></span>];
 
             <span class="pl-en">SearchServiceClient</span> <span class="pl-en">serviceClient</span> = <span class="pl-k">new</span> <span class="pl-en">SearchServiceClient</span>(searchServiceName, <span class="pl-k">new</span> <span class="pl-en">SearchCredentials</span>(<span class="pl-en">searchServiceKey</span>));
             <span class="pl-en">ISearchIndexClient</span> <span class="pl-en">indexClient</span> = serviceClient.Indexes.GetClient(<span class="pl-s"><span class="pl-pds">"</span>customerindex<span class="pl-pds">"</span></span>);
@@ -1262,8 +1238,9 @@ vertical-align:1px;
 }</pre></div>
 </li>
 <li>
-<p>Open <strong>Web.config</strong> and add the following statement to the <code>&lt;appSettings&gt;</code> section, replacing <em>search_service_name</em> with the name you assigned to the Azure Search service in Exercise 4, Step 2:</p>
-<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>SearchServiceName<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>search_service_name<span class="pl-pds">"</span></span> /&gt;</pre></div>
+<p>Open <strong>Web.config</strong> and add the following statements to the <code>&lt;appSettings&gt;</code> section, replacing SEARCH_SERVICE_NAME with the name you assigned to the Azure Search service in Exercise 4, Step 2:</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>SearchServiceName<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>SEARCH_SERVICE_NAME<span class="pl-pds">"</span></span> /&gt;
+&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>SearchServiceKey<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>SEARCH_SERVICE_KEY<span class="pl-pds">"</span></span> /&gt;</pre></div>
 </li>
 <li>
 <p>Return to the Azure Portal and open the blade for the Azure Search service. Click <strong>Keys</strong>, followed by <strong>Manage query keys</strong>. Then copy the query key to the clipboard.</p>
@@ -1274,8 +1251,7 @@ vertical-align:1px;
 <p><em>Copying the query key to the clipboard</em></p>
 </li>
 <li>
-<p>Return to Visual Studio. Add the following statement to the <code>&lt;appSettings&gt;</code> section of <strong>Web.config</strong>, replacing <em>search_service_key</em> with the query key on the clipboard.</p>
-<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">add</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">"</span>SearchServiceKey<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>search_service_key<span class="pl-pds">"</span></span> /&gt;</pre></div>
+<p>Return to Visual Studio. In <strong>Web.config</strong>, replace SEARCH_SERVICE_KEY with the query key on the clipboard.</p>
 </li>
 <li>
 <p>Add the following methods to the <code>HomeController</code> class in <strong>HomeController.cs</strong>:</p>
@@ -1319,8 +1295,6 @@ vertical-align:1px;
 </li>
 </ol>
 <p>Auto-suggest vastly improves the search experience and is relatively easy to add thanks to some of the classes you imported in NuGet packages in <a href="#Exercise5">Exercise 5</a>.</p>
-<p>When you created the project for the Web app in Visual Studio, you checked the <strong>Host in the cloud</strong> box so the app could be deployed to Azure, and you created an Azure App Service to host it. Up to now, the app has run locally. If you would like to deploy it to Azure so it can be opened from anywhere, simply right-click the project in Solution Explorer, select <strong>Publish</strong> from the context menu, and click the <strong>Publish</strong> button in the ensuing dialog. Once the app has been published, it will open in a browser window.</p>
-<p>When you're finished using the app, it is recommended that you delete the resource group containing it. Since you placed the Azure Web App in the same resource group as the DocumentDB account and the Search service, deleting the resource group deletes <strong>all</strong> of these resources, removes all traces of this lab from your account, and prevents any further charges from being incurred for it. To delete the resource group, simply open the resource-group blade in the portal and click <strong>Delete</strong> at the top of the blade. You will be asked to type the resource group's name to confirm that you want to delete it, because once deleted, a resource group can't be recovered.</p>
 <p><a name="Summary"></a></p>
 <h2>Summary</h2>
 <p>In this hands-on lab you learned how to:</p>
@@ -1331,7 +1305,7 @@ vertical-align:1px;
 <li>Access DocumentDB collections from your apps</li>
 <li>Query the Azure Search service connected to a DocumentDB database</li>
 </ul>
-<p>Not surprisingly, there is much more you can do to leverage the power of Azure DocumentDB. Experiment with other DocumentDB features, especially <a href="https://docs.microsoft.com/en-us/azure/documentdb/documentdb-programming">triggers, stored procedures, and user-defined functions</a>, and identify other ways you can enhance your data and search strategies by integrating Azure DocumentDB into your application ecosystems.</p>
+<p>Not surprisingly, there is much more you can do to leverage the power of the DocumentDB API. Experiment with other DocumentDB features, especially <a href="https://docs.microsoft.com/en-us/azure/documentdb/documentdb-programming">triggers, stored procedures, and user-defined functions</a>, and identify other ways you can enhance your data and search strategies by integrating Azure Cosmos DB and the DocumentDB API into your application ecosystems.</p>
 <hr>
 <p>Copyright 2017 Microsoft Corporation. All rights reserved. Except where otherwise noted, these materials are licensed under the terms of the MIT License. You may use them according to the license as is most appropriate for your project. The terms of this license can be found at <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.</p>
 </body>
