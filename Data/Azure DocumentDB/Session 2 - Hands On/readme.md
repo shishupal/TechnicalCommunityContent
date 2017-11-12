@@ -187,7 +187,9 @@ One of the benefits of using DocumentDB is that it integrates easily with [Azure
 
     _Creating a new Azure Search service_
 
-1. In the "New Search Service" blade, give the service a unique name in the **URL** box and make sure a green check mark appears next to it. (You can only use numbers and lowercase letters since the name becomes part of a DNS name.) Select **Use existing** under **Resource group** and select the resource group you created for the Cosmos DB account in [Exercise 1](#Exercise1).Select the **Location** nearest you, and then click the **Create** button.
+1. In the "New Search Service" blade, enter a unique name in the **URL** box and make sure a green check mark appears next to it. (You can only use numbers and lowercase letters since the name becomes part of a DNS name.) Place the service in the same resource group and location you chose for the Cosmos DB account in [Exercise 1](#Exercise1).
+
+	Now click **Pricing tier** and select the **Free** tier. Finish up by clicking the **Select** button at the bottom of the "Choose your pricing tier" blade, followed by the **Create** button at the bottom of the "New Search Service" blade.
 
     ![Specifying Search parameters](Images/portal-configure-new-search-service.png)
 
